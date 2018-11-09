@@ -7,7 +7,7 @@
     </head>
     <body>
         <style>
-            #loginForm {
+            #forgotUserForm {
                 position: absolute;
                 left: 50%;
                 top: 50%;
@@ -32,16 +32,16 @@
         <div id = "logoImg">
 
         </div>
-        <div id = "loginForm">
+        <div id = "forgotUserForm">
             <form>
                 <formfield>
-                    <legend>Login</legend>
+                    <legend>Account Recovery</legend>
+                    <input id = "email" type = "text" placeholder="example@mail.ca">
                     <input id = "username" type = "text" placeholder="User name">
-                    <input id = "password" type = "password" placeholder = "Password">
                     <br />
-                    <button id = "submit">Log in</button>
+                    <button id = "submit">Submit</button>
+                    <a href = "index.html" class = "link">Home</a>
                     <a href = "newUser.html" class = "link">New user?</a>
-                    <a href = "forgot.html" class = "link">Forgot password?</a>
                 </formfield>
             </form>
         </div>
