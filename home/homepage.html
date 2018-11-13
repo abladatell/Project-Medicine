@@ -6,21 +6,38 @@
 <title>Medication Tracker</title>
 <style>
 </style>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
+    authDomain: "project-medicine-e92db.firebaseapp.com",
+    databaseURL: "https://project-medicine-e92db.firebaseio.com",
+    projectId: "project-medicine-e92db",
+    storageBucket: "project-medicine-e92db.appspot.com",
+    messagingSenderId: "625232278011"
+  };
+  firebase.initializeApp(config);
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    // ...
+  } else {
+    // User is signed out.
+    // ...
+  }
+});
+
+</script>
 </head>
 <body>
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
-        authDomain: "project-medicine-e92db.firebaseapp.com",
-        databaseURL: "https://project-medicine-e92db.firebaseio.com",
-        projectId: "project-medicine-e92db",
-        storageBucket: "project-medicine-e92db.appspot.com",
-        messagingSenderId: "625232278011"
-      };
-      firebase.initializeApp(config);
-    </script>
   <div id='overlay'>
     <div id='mainbox'>
     </div>

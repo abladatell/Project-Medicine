@@ -4,9 +4,8 @@
         <title>
             Project Medicine
         </title>
-    </head>
-    <body>
         <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
           // Initialize Firebase
           var config = {
@@ -19,6 +18,8 @@
           };
           firebase.initializeApp(config);
         </script>
+    </head>
+    <body>
         <style>
             #forgotUserForm {
                 position: absolute;
@@ -50,7 +51,6 @@
                 <formfield>
                     <legend>Account Recovery</legend>
                     <input id = "email" type = "text" placeholder="example@mail.ca">
-                    <input id = "username" type = "text" placeholder="User name">
                     <br />
                     <button id = "submit">Submit</button>
                     <a href = "index.html" class = "link">Home</a>
@@ -58,5 +58,16 @@
                 </formfield>
             </form>
         </div>
+        <script>
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // ...
+            });
+        </script>
     </body>
 </html>

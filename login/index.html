@@ -4,9 +4,8 @@
         <title>
             Project Medicine
         </title>
-    </head>
-    <body>
         <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
           // Initialize Firebase
           var config = {
@@ -19,6 +18,12 @@
           };
           firebase.initializeApp(config);
         </script>
+
+    </head>
+    <body>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
         <style>
             #loginForm {
                 position: absolute;
@@ -49,14 +54,31 @@
             <form>
                 <formfield>
                     <legend>Login</legend>
-                    <input id = "username" type = "text" placeholder="User name">
+                    <input id = "email" type = "text" placeholder="Email">
                     <input id = "password" type = "password" placeholder = "Password">
                     <br />
-                    <button id = "submit">Log In</button></a>
+                    <button type = "submit" formtarget = "_blank" id = "submit">Log In</button></a>
                     <a href = "newUser.html" class = "link">New user?</a>
                     <a href = "forgot.html" class = "link">Forgot password?</a>
                 </formfield>
             </form>
         </div>
+        <script>
+            function handleSubmission(){
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+
+                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                  // Handle Errors here.
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  // ...
+                });
+            }
+            $("#submit").click(function(){
+                console.log("working");
+                handleSubmission();
+            })
+        </script>
     </body>
 </html>
