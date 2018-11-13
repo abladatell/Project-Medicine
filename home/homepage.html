@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medication Tracker</title>
+<style>
+</style>
+</head>
+<body>
+  <div id='overlay'>
+    <div id='mainbox'>
+    </div>
+  </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("body, html").css({
+      "margin" : "0px",
+      "padding" : "0px",
+      "background" : "url(./images/landscape.jpg)",
+      "background-size" : "cover"
+    });
+
+    $("#overlay").css({
+      "position" : "absolute",
+      "width" : "100%",
+      "height" : "100%",
+      "background" : "rgba(0, 0, 0, 0.5)",
+      "background-size" : "cover"
+    });
+
+    $("#mainbox").css({
+      "width" : "1000px",
+      "height" : "600px",
+      "background-color" : "#FFFFFF",
+      "margin-left" : "auto",
+      "margin-right" : "auto",
+      "margin-top" : "100px",
+      "box-shadow" : "2px 2px #000000"
+    });
+
+    $("#mainbox").append("<div id='leftside'></div>");
+    $("#mainbox").append("<div id='rightside'></div>");
+
+    $("#leftside, #rightside").css({
+      "height" : "100%",
+      "float" : "left"
+    });
+
+    $("#leftside").css({
+      "width" : "60%"
+    });
+
+    $("#rightside").css({
+      "width" : "40%",
+    });
+
+    $("#leftside").append("<div id='topleft'></div><div id='bottomleft'></div>'");
+
+    $("#topleft, #bottomleft").css({
+      "width" : "100%",
+      "float" : "left"
+    });
+
+    $("#topleft").css({
+      "height" : "20%",
+      "text-align" : "center",
+      "margin-top" : "0.5em"
+    });
+
+    $("#bottomleft").css({
+      "height" : "80%"
+    });
+
+    $("#rightside").append("<button id='add'>Add Medication</button> <br><br>");
+    $("#rightside").append("<button id='delete'>Delete</button>");
+
+    $("#add, #delete").css({
+      "font-size" : "2.5em",
+      "padding" : "0.5em",
+      "margin-left" : "auto",
+      "margin-right" : "auto",
+      "margin-top" : "3em",
+      "display" : "block"
+    });
+
+    $("#topleft").append("<h1>Today's Medication</h1>");
+    $("#bottomleft").append("<div id='todaylist'></div>)");
+
+    $("#todaylist").css({
+      "margin-left" : "auto",
+      "margin-right" : "auto",
+      "display" : "block",
+      "background-color" : "beige",
+      "width" : "90%",
+      "height" : "90%",
+      "border-radius" : "10%",
+      "border-color" : "grey",
+      "border-style" : "solid"
+    });
+
+
+
+
+
+  });
+</script>
+</body>
+</html>
