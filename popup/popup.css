@@ -1,0 +1,80 @@
+form {
+  width: 70%;
+  text-align: justify;
+  column-count: 2;
+}
+
+input[type=text] {
+  width: 90%;
+}
+
+#datepicker {
+  margin-top: 2.6rem;
+  width: 80%;
+  font-size:  1rem;
+}
+
+span {
+  text-align: left;
+}
+
+.checkBoxGroup {
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+
+}
+
+label {
+  display: block;
+  margin-right: 2.7rem;
+  font-family: monospace;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+input[type=submit], input[type=button] {
+  margin-right: 3rem;
+  height: 2.5rem;
+  width: 7rem;
+}
+
+input[type=button] {
+  margin-right: 0;
+  margin-left: 3rem;
+}
+
+#container1 {
+  width: 90%;
+  display: inline-block;
+  margin: 1rem;
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  margin-right: 0;
+  text-align: right;
+}
+
+#container2 {
+  width: 100%;
+  display: block;
+}
+
+input {
+  margin-top: 1.4rem;
+}
+
+#day1, #day2, #day3 {
+  margin-top: 5.5rem;
+  margin-right: 3rem;
+}
+
+#week1, #week2, #week3, #week4, #week5, #week6, #week7 {
+  margin-top: 4.5rem;
+  margin-right: 3rem;
+}
+
+textarea {
+  margin-top: 7rem;
+  width: 90%;
+  height: 7rem;
+}

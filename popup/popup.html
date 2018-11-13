@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <title>Add Your Medication</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function(){
+        $("#datepicker").datepicker({
+          changeMonth: true,
+          changeYear: true
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <form>
+      <div id="container1">
+        <span id="name">Name of Medicine:</span><br><br><br><br>
+
+        <span id="day">How many times a day?</span><br><br><br><br>
+
+        <span id="week">How many times a week?</span><br><br><br>
+
+
+        <span id="until">Until when?</span><br><br><br><br>
+        <br>
+
+        <span id="notes">Additional Notes:</span><br><br><br><br><br>
+      </div>
+
+
+
+      <div id="container2">
+        <input type="text" name="inputName"><br>
+
+        <div class="checkBoxGroup">
+          <input type="radio" name="formDay" id="day1"><label for="day1">1</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formDay" id="day2"><label for="day2">2</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formDay" id="day3"><label for="day3">3</label>
+        </div><br>
+
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week1"><label for="week1">1</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week2"><label for="week1">2</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week3"><label for="week1">3</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week4"><label for="week1">4</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week5"><label for="week1">5</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week6"><label for="week1">6</label>
+        </div>
+        <div class="checkBoxGroup">
+          <input type="radio" name="formWeek" id="week7"><label id="everyDay" for="week1">Daily</label>
+        </div><br>
+
+        <input type="text" id="datepicker" value="Click here to enter date">
+
+        <textarea rows="4" cols="50"></textarea>
+      </div>
+      <br><br>
+      <div id="buttons">
+      <input type="submit">
+      <input type="button" value="Cancel" onlclick="self.close()">
+      </div>
+
+    </form>
+
+
+  </body>
+</html>
