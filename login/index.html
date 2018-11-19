@@ -1,84 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset = "utf-8">
         <title>
             Project Medicine
         </title>
-        <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-          // Initialize Firebase
-          var config = {
-            apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
-            authDomain: "project-medicine-e92db.firebaseapp.com",
-            databaseURL: "https://project-medicine-e92db.firebaseio.com",
-            projectId: "project-medicine-e92db",
-            storageBucket: "project-medicine-e92db.appspot.com",
-            messagingSenderId: "625232278011"
-          };
-          firebase.initializeApp(config);
-        </script>
-
+        <script src = "https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link type = "text/css" href = "scripts/index.css"
     </head>
     <body>
-        <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-
-        <style>
-            #loginForm {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 25%;
-                background-color: grey;
-            }
-
-            formfield {
-                width: 100%;
-            }
-            input{
-                width: 95%;
-            }
-
-            #submit {
-                float: right;
-            }
-
-            .link {
-            }
-        </style>
-        <div id = "logoImg">
-
+        <div class = "container">
+            <input type = "email" id = "email" placeholder = "Email">
+            <input type = "password" id = "password" placeholder = "Password">
+            <button id = "logIn">Log in </button>
+            <button id = "signUp">Sign up </button>
+            <button id = "signOut">Sign out </button>
         </div>
-        <div id = "loginForm">
-            <form>
-                <formfield>
-                    <legend>Login</legend>
-                    <input id = "email" type = "text" placeholder="Email">
-                    <input id = "password" type = "password" placeholder = "Password">
-                    <br />
-                    <button type = "submit" formtarget = "_blank" id = "submit">Log In</button></a>
-                    <a href = "newUser.html" class = "link">New user?</a>
-                    <a href = "forgot.html" class = "link">Forgot password?</a>
-                </formfield>
-            </form>
-        </div>
-        <script>
-            function handleSubmission(){
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
 
-                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                  // Handle Errors here.
-                  var errorCode = error.code;
-                  var errorMessage = error.message;
-                  // ...
-                });
-            }
-            $("#submit").click(function(){
-                console.log("working");
-                handleSubmission();
-            })
-        </script>
+        <script src = "scripts/index.js"></script>
     </body>
 </html>
