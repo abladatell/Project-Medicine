@@ -16,6 +16,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//Creates db reference
+const db = firebase.database();
+
 //Elements (Thanks firebase)
 const textEmail = document.getElementById("email");
 const textPassword = document.getElementById("password");
@@ -53,6 +56,7 @@ signOut.addEventListener("click", e => {
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
+        writeUserData();
         $("#signOut").css("display", "inline-block");
         $("#logIn").css("display", "none");
         $("#signUp").css("display", "none");
@@ -64,3 +68,18 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $("#signUp").css("display", "inline-block");
     }
 });
+
+/******************************************************************************
+*******************************************************************************
+****************           DATABASE                   *************************
+*******************************************************************************
+******************************************************************************/
+
+function writeUserData(){
+    console.log("writing to database");
+    var user = firebase.auth().currentUser;
+    db.ref('user/' + user.uid).set({
+        email: user.email,
+        medicine: "example"
+    });
+}
