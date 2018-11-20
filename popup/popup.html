@@ -7,18 +7,22 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://www.json.org/json2.js"></script>
     <script>
       $(function(){
         $("#datepicker").datepicker({
           changeMonth: true,
           changeYear: true
         });
+
+
+
       });
     </script>
   </head>
 
   <body>
-    <form>
+    <form id="popup" onsubmit="getValues">
       <div id="container1">
         <span id="name">Name of Medicine:</span><br><br><br><br>
 
@@ -52,22 +56,22 @@
           <input type="radio" name="formWeek" id="week1"><label for="week1">1</label>
         </div>
         <div class="checkBoxGroup">
-          <input type="radio" name="formWeek" id="week2"><label for="week1">2</label>
+          <input type="radio" name="formWeek" id="week2"><label for="week2">2</label>
         </div>
         <div class="checkBoxGroup">
-          <input type="radio" name="formWeek" id="week3"><label for="week1">3</label>
+          <input type="radio" name="formWeek" id="week3"><label for="week3">3</label>
         </div>
         <div class="checkBoxGroup">
-          <input type="radio" name="formWeek" id="week4"><label for="week1">4</label>
+          <input type="radio" name="formWeek" id="week4"><label for="week4">4</label>
         </div>
         <div class="checkBoxGroup">
-          <input type="radio" name="formWeek" id="week5"><label for="week1">5</label>
+          <input type="radio" name="formWeek" id="week5"><label for="week5">5</label>
         </div>
         <div class="checkBoxGroup">
-          <input type="radio" name="formWeek" id="week6"><label for="week1">6</label>
+          <input type="radio" name="formWeek" id="week6"><label for="week6">6</label>
         </div>
         <div class="checkBoxGroup">
-          <input type="radio" name="formWeek" id="week7"><label id="everyDay" for="week1">Daily</label>
+          <input type="radio" name="formWeek" id="week7"><label for="week7">Daily</label>
         </div><br>
 
         <input type="text" id="datepicker" value="Click here to enter date">
@@ -76,12 +80,28 @@
       </div>
       <br><br>
       <div id="buttons">
-      <input type="submit">
+      <input type="submit" name="mySubmit">
       <input type="button" value="Cancel" onlclick="self.close()">
       </div>
 
     </form>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("input[type='radio']").click(function(){
+          var radioValue1 = $("input[name='formDay']:checked").val();
+          var radioValue2 = $("input[name='formWeek']:checked").val();
+          if(radioValue1) {
+            alert(radioValue1);
+          }
+          if(radioValue2) {
+            alert(radioValue2);
+          }
+        });
 
+      });
+
+    </script>
   </body>
 </html>
