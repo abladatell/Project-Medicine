@@ -4,8 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medication Tracker</title>
-<style>
-</style>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:700" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
+    authDomain: "project-medicine-e92db.firebaseapp.com",
+    databaseURL: "https://project-medicine-e92db.firebaseio.com",
+    projectId: "project-medicine-e92db",
+    storageBucket: "project-medicine-e92db.appspot.com",
+    messagingSenderId: "625232278011"
+  };
+  firebase.initializeApp(config);
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    // ...
+  } else {
+    // User is signed out.
+    // ...
+  }
+});
+
+</script>
 </head>
 <body>
   <div id='overlay'>
@@ -37,7 +66,8 @@
       "margin-left" : "auto",
       "margin-right" : "auto",
       "margin-top" : "100px",
-      "box-shadow" : "2px 2px #000000"
+      "box-shadow" : "2px 2px #000000",
+      "border-radius" : "3%"
     });
 
     $("#mainbox").append("<div id='leftside'></div>");
@@ -45,7 +75,8 @@
 
     $("#leftside, #rightside").css({
       "height" : "100%",
-      "float" : "left"
+      "float" : "left",
+      "border-radius" : "3%"
     });
 
     $("#leftside").css({
@@ -54,9 +85,11 @@
 
     $("#rightside").css({
       "width" : "40%",
+      "background-color" : "#F5F5F5"
     });
 
-    $("#leftside").append("<div id='topleft'></div><div id='bottomleft'></div>'");
+    $("#leftside").append("<div id='topleft'></div>");
+    $("#leftside").append("<div id='bottomleft'></div>");
 
     $("#topleft, #bottomleft").css({
       "width" : "100%",
@@ -66,7 +99,7 @@
     $("#topleft").css({
       "height" : "20%",
       "text-align" : "center",
-      "margin-top" : "0.5em"
+      "margin-top" : "0.5em",
     });
 
     $("#bottomleft").css({
@@ -81,24 +114,71 @@
       "padding" : "0.5em",
       "margin-left" : "auto",
       "margin-right" : "auto",
-      "margin-top" : "3em",
       "display" : "block"
     });
 
+    $("#add").css("margin-top", "50%");
+
     $("#topleft").append("<h1>Today's Medication</h1>");
-    $("#bottomleft").append("<div id='todaylist'></div>)");
+
+    $("h1").css({
+      "margin-top" : "20px",
+      "margin-bottom" : "10px"
+    });
+
+    $("#bottomleft").append("<div id='todaylist'></div>");
 
     $("#todaylist").css({
       "margin-left" : "auto",
       "margin-right" : "auto",
       "display" : "block",
-      "background-color" : "beige",
+      "background-color" : "#E0E0E0",
       "width" : "90%",
       "height" : "90%",
       "border-radius" : "10%",
       "border-color" : "grey",
-      "border-style" : "solid"
+      "border-style" : "solid",
+      "border-width" : "5px"
     });
+
+    $("*").css("font-family" , "Quicksand, sans-serif");
+
+    var todaydate = new Date();
+
+    function myMonth() {
+      if (todaydate.getMonth() == 0) {
+        return "January";
+      } else if (todaydate.getMonth() == 1) {
+        return "February";
+      } else if (todaydate.getMonth() == 2) {
+        return "March";
+      } else if (todaydate.getMonth() == 3) {
+        return "April";
+      } else if (todaydate.getMonth() == 4) {
+        return "May";
+      } else if (todaydate.getMonth() == 5) {
+        return "June";
+      } else if (todaydate.getMonth() == 6) {
+        return "July";
+      } else if (todaydate.getMonth() == 7) {
+        return "August";
+      } else if (todaydate.getMonth() == 8) {
+        return "September";
+      } else if (todaydate.getMonth() == 9) {
+        return "October";
+      } else if (todaydate.getMonth() == 10) {
+        return "November";
+      } else {
+        return "December";
+      }
+    }
+
+    $("#topleft").append("<span id='dateselect'></span>");
+    $("#dateselect").append(myMonth() + " ");
+    $("#dateselect").append(todaydate.getDate() + ", ");
+    $("#dateselect").append(todaydate.getFullYear());
+
+    $("#dateselect").css("font-size", "1.5em");
 
 
 
