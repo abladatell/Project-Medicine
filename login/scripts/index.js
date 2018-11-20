@@ -1,3 +1,10 @@
+/******************************************************************************
+*******************************************************************************
+**              FIREBASE LOGIN SIGNIN LOGOUT SECTION                         **
+*******************************************************************************
+******************************************************************************/
+
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
@@ -35,13 +42,24 @@ signUp.addEventListener("click", e => {
     //Sign up
     const promise = auth.createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
+});
+
+//Logout event
+signOut.addEventListener("click", e => {
+    firebase.auth().signOut();
 })
 
 //Add a realtime addEventListener
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
+        $("#signOut").css("display", "inline-block");
+        $("#logIn").css("display", "none");
+        $("#signUp").css("display", "none");
     } else {
         console.log("not logged in");
+        $("#signOut").css("display", "none");
+        $("#logIn").css("display", "inline-block");
+        $("#signUp").css("display", "inline-block");
     }
-})
+});

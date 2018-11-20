@@ -1,0 +1,34 @@
+.container{
+    display: inline-block;
+    position: absolute;
+}
+
+#logInContainer{
+    left: 33%;
+    top: 45%;
+}
+
+#logIn{
+    display: inline-block;
+    position: absolute;
+    top: 33px;
+    right: 0px;
+}
+
+#signOut{
+    display: inline-block;
+    position: absolute;
+    top: 33px;
+    right: 0px;
+}
+
+#signUp{
+    display: inline-block;
+    position: absolute;
+    top: 33px;
+    right: 80px;
+}
+
+body{
+    /* TODO: Background image, make similar to other pages. */
+}
