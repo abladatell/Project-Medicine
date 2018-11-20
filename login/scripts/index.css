@@ -5,7 +5,11 @@
 
 #logInContainer{
     left: 33%;
-    top: 45%;
+    top: 33%;
+}
+
+.logInInput{
+    /* TODO: Line stuff up */
 }
 
 #logIn{

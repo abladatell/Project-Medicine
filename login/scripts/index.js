@@ -56,6 +56,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $("#signOut").css("display", "inline-block");
         $("#logIn").css("display", "none");
         $("#signUp").css("display", "none");
+
     } else {
         console.log("not logged in");
         $("#signOut").css("display", "none");
