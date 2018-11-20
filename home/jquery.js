@@ -51,13 +51,13 @@ $(document).ready(function() {
   });
 
   $("#topleft").css({
-    "height" : "20%",
+    "height" : "25%",
     "text-align" : "center",
     "margin-top" : "0.5em",
   });
 
   $("#bottomleft").css({
-    "height" : "80%"
+    "height" : "75%"
   });
 
   $("#rightside").append("<button id='add'>Add Medication</button> <br><br>");
@@ -76,7 +76,7 @@ $(document).ready(function() {
   $("#topleft").append("<h1>Today's Medication</h1>");
 
   $("h1").css({
-    "margin-top" : "20px",
+    "margin-top" : "50px",
     "margin-bottom" : "10px"
   });
 
@@ -148,8 +148,7 @@ $(document).ready(function() {
   });
 
   $("#leftarrow, #rightarrow").css({
-    "width" : "30%",
-    "float" : "left"
+    "width" : "30%"
   });
 
   $(".dateicon").css({
@@ -157,10 +156,24 @@ $(document).ready(function() {
     "width" : "40px"
   });
 
-  $("#rightside").append("<button id='logout'>Log out </button>");
-  $("#logout").css({
-    "position" : "absolute",
+  $("#rightside").append("<div id='logoutdiv'><button id='logout'>Log out </button></div>");
 
+  $("#logoutdiv").css({
+    "width" : "100%",
+    "height" : "150px",
+    "font-size" : "1.3em",
+    "float" : "right"
+  });
+
+  $("#logout").css({
+    "position" : "relative",
+    "padding" : "5px",
+    "padding-left" : "10px",
+    "padding-right" : "10px",
+    "font-size" : "1em",
+    "float" : "right",
+    "right" : "30px",
+    "top" : "110px"
   });
 
 });
