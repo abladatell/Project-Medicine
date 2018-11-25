@@ -85,7 +85,7 @@ $(document).ready(function() {
   });
 
   $("#navigationcontent").append("<button class='buttons' id='add'>Add Medication</button>");
-  $("#navigationcontent").append("<button class='buttons' id='delete'>Delete</button>");
+  $("#navigationcontent").append("<button class='buttons' id='delete'>Delete Medication</button>");
   $("#navigationcontent").append("<span id='logout'>Logout</span>");
 
   $(".buttons").css({
@@ -117,57 +117,64 @@ $(document).ready(function() {
     "border-top" : "2px #696969 solid "
   })
 
-  var todaydate = new Date();
+
+  var todaydate = new Date(); //Initialize default date, which is today.
+
+  var themonths = ['January', 'February', 'March', 'April', 'May', 'June',
+   'July', 'August', 'September', 'October', 'November', 'December'];
 
   function myMonth() {
     if (todaydate.getMonth() == 0) {
-      return "January";
+      return themonth[0];
     } else if (todaydate.getMonth() == 1) {
-      return "February";
+      return themonth[1];
     } else if (todaydate.getMonth() == 2) {
-      return "March";
+      return themonth[2];
     } else if (todaydate.getMonth() == 3) {
-      return "April";
+      return themonth[3];
     } else if (todaydate.getMonth() == 4) {
-      return "May";
+      return themonth[4];
     } else if (todaydate.getMonth() == 5) {
-      return "June";
+      return themonth[5];
     } else if (todaydate.getMonth() == 6) {
-      return "July";
+      return themonth[6];
     } else if (todaydate.getMonth() == 7) {
-      return "August";
+      return themonth[7];
     } else if (todaydate.getMonth() == 8) {
-      return "September";
+      return themonth[8];
     } else if (todaydate.getMonth() == 9) {
-      return "October";
+      return themonth[9];
     } else if (todaydate.getMonth() == 10) {
-      return "November";
+      return themonth[10];
     } else {
       return "December";
     }
   }
 
+  var thedays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+   'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
   function myDay() {
     if (todaydate.getDay() == 0) {
-      return "Sunday";
+      return thedays[0];
     } else if (todaydate.getDay() == 1) {
-      return "Monday";
+      return thedays[1];
     } else if (todaydate.getDay() == 2) {
-      return "Tuesday";
+      return thedays[2];
     } else if (todaydate.getDay() == 3) {
-      return "Wednesday";
+      return thedays[3];
     } else if (todaydate.getDay() == 4) {
-      return "Thursday";
+      return thedays[4];
     } else if (todaydate.getDay() == 5) {
-      return "Friday";
+      return thedays[5];
     } else {
-      return "Saturday";
+      return thedays[6];
     }
   }
 
   $("#date").append(myDay() + ", ");
   $("#date").append(myMonth() + " ");
-  $("#date").append(todaydate.getDate() + ", ");
+  $("#date").append("<span id='thedate'>" + todaydate.getDate() + "</span>, ");
   $("#date").append(todaydate.getFullYear());
 
   $("#date").css({
@@ -178,8 +185,7 @@ $(document).ready(function() {
     "font-weight" : "bold"
   });
 
-  $("#date").append("<img class='dateicon' id='lefticon' src='./images/left-arrow.svg'>");
-  $("#date").append("<img class='dateicon' id='righticon' src='./images/right-arrow.svg'>");
+  $("#date").append("<span id='rightdate'>Date: <input type='text id='datepicker'></span>");
 
   $(".dateicon").css({
     "height" : "50px",
@@ -188,8 +194,9 @@ $(document).ready(function() {
     "margin-right" : "20px"
   });
 
-  $("#lefticon").css("float", "left");
-  $("#righticon").css("float", "right");
+  $("#rightdate").css({
+    "float" : "right"
+  });
 
 
 
