@@ -120,7 +120,7 @@ $(document).ready(function() {
 
   var todaydate = new Date(); //Initialize default date, which is today.
 
-  var themonths = ['January', 'February', 'March', 'April', 'May', 'June',
+  var themonth = ['January', 'February', 'March', 'April', 'May', 'June',
    'July', 'August', 'September', 'October', 'November', 'December'];
 
   function myMonth() {
@@ -198,7 +198,9 @@ $(document).ready(function() {
     "float" : "right"
   });
 
-
+  $("#delete").on("click", function(){
+    $("#schedule_list").append(todaydate.setDate(todaydate.getDate()+1).toUTCString());
+  });
 
   $("body").append("<div id='popupcover'></div>");
   $("body").append("<div id='popup'></div>");
