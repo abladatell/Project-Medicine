@@ -90,7 +90,7 @@ $(document).ready(function() {
 
   $(".buttons").css({
     "font-family" : "Open Sans, sans-serif",
-    "margin-right" : "10px",
+    "margin-right" : "20px",
     "font-size" : "1.5em",
     "margin-top" : "10px"
   });
@@ -107,12 +107,12 @@ $(document).ready(function() {
 
   $("#date").css({
     "width" : "100%",
-    "height" : "6%",
+    "height" : "9%",
   })
 
   $("#schedule_list").css({
     "width" : "100%",
-    "height" : "94%",
+    "height" : "91%",
     "background-color" : "#C8C8C8",
     "border-top" : "2px #696969 solid "
   })
@@ -147,6 +147,25 @@ $(document).ready(function() {
     }
   }
 
+  function myDay() {
+    if (todaydate.getDay() == 0) {
+      return "Sunday";
+    } else if (todaydate.getDay() == 1) {
+      return "Monday";
+    } else if (todaydate.getDay() == 2) {
+      return "Tuesday";
+    } else if (todaydate.getDay() == 3) {
+      return "Wednesday";
+    } else if (todaydate.getDay() == 4) {
+      return "Thursday";
+    } else if (todaydate.getDay() == 5) {
+      return "Friday";
+    } else {
+      return "Saturday";
+    }
+  }
+
+  $("#date").append(myDay() + ", ");
   $("#date").append(myMonth() + " ");
   $("#date").append(todaydate.getDate() + ", ");
   $("#date").append(todaydate.getFullYear());
@@ -154,15 +173,62 @@ $(document).ready(function() {
   $("#date").css({
     "font-family" : "Open Sans, sans-serif",
     "font-size" : "1.5em",
-    "padding-top" : "10px",
+    "padding-top" : "15px",
     "text-align" : "center",
     "font-weight" : "bold"
   });
 
+  $("#date").append("<img class='dateicon' id='lefticon' src='./images/left-arrow.svg'>");
+  $("#date").append("<img class='dateicon' id='righticon' src='./images/right-arrow.svg'>");
+
+  $(".dateicon").css({
+    "height" : "50px",
+    "width" : "50px",
+    "margin-left" : "20px",
+    "margin-right" : "20px"
+  });
+
+  $("#lefticon").css("float", "left");
+  $("#righticon").css("float", "right");
 
 
 
+  $("body").append("<div id='popupcover'></div>");
+  $("body").append("<div id='popup'></div>");
 
+  $("#popupcover").css({
+    "width" : "100%",
+    "height" : "100%",
+    "position" : "absolute",
+    "background-color" : "rgba(0, 0, 0, 0.5)",
+    "top" : "0",
+    "left" : "0",
+    "z-index" : "10",
+    "display" : "none"
+  });
+
+  $("#popup").css({
+    "width" : "950px",
+    "height": "700px",
+    "background-color" : "white",
+    "display" : "none",
+    "margin" : "0 auto",
+    "z-index" : "11",
+    "top" : "22%",
+    "left" : "20%",
+    "right" : "20%",
+    "position" : "absolute"
+  });
+
+  $("#add").on("click", function(){
+    $("#popupcover").fadeIn("slow");
+    $("#popup").fadeIn("slow");
+  });
+
+  $("#popupcover").on("click", function(){
+    $("#popupcover").fadeOut("slow");
+    $("#popup").fadeOut("slow");
+  });
 
 
 });
