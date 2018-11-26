@@ -172,6 +172,9 @@ $(document).ready(function() {
     }
   }
 
+  var datelist = [];
+  
+
   $("#date").append(myDay() + ", ");
   $("#date").append(myMonth() + " ");
   $("#date").append("<span id='thedate'>" + todaydate.getDate() + "</span>, ");
@@ -198,8 +201,11 @@ $(document).ready(function() {
     "float" : "right"
   });
 
+  var i = 0;
+
   $("#delete").on("click", function(){
-    $("#schedule_list").append(todaydate.setDate(todaydate.getDate()+1).toUTCString());
+    $("#date").append(todaydate.getDate()+i);
+    i++;
   });
 
   $("body").append("<div id='popupcover'></div>");
