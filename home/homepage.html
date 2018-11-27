@@ -7,34 +7,6 @@
 <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
-    authDomain: "project-medicine-e92db.firebaseapp.com",
-    databaseURL: "https://project-medicine-e92db.firebaseio.com",
-    projectId: "project-medicine-e92db",
-    storageBucket: "project-medicine-e92db.appspot.com",
-    messagingSenderId: "625232278011"
-  };
-  firebase.initializeApp(config);
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var displayName = user.displayName;
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
-    // ...
-  } else {
-    // User is signed out.
-    // ...
-  }
-});
-</script>
 </head>
 <body>
   <div id='myheader'></div>
@@ -44,6 +16,48 @@
 <script>
   $( function() {
     $("#datepicker").datepicker();
+  });
+</script>
+
+<!-- Firebase initialization and logout function -->
+<!-- TODO: Figure out how to transfer authentication over -->
+<script>
+  // Initialize Firebase
+  var config = {
+      apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
+      authDomain: "project-medicine-e92db.firebaseapp.com",
+      databaseURL: "https://project-medicine-e92db.firebaseio.com",
+      projectId: "project-medicine-e92db",
+      storageBucket: "project-medicine-e92db.appspot.com",
+      messagingSenderId: "625232278011"
+  };
+  firebase.initializeApp(config);
+
+  // Reference to database.
+  const db = firebase.database();
+
+  // Reference to current users info in authentication.
+  var user = firebase.auth().currentUser;
+  console.log(user);
+  // Reference to current users id.
+  var id = user.uid;
+
+  //Logout event
+  const logOut = document.getElementById("logout")
+  logOut.addEventListener("click", e => {
+      console.log("Signing out");
+      firebase.auth().signOut();
+  });
+
+  // Checks if logged in, and if not redirects to login page.
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+          // TODO: REMOVE THIS ONCE DONE BUGTESTING
+          console.log(user);
+      } else {
+          console.log("not logged in");
+          window.location.href = "../login/index.html";
+      }
   });
 </script>
 </body>

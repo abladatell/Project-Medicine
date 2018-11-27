@@ -60,6 +60,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $("#signOut").css("display", "inline-block");
         $("#logIn").css("display", "none");
         $("#signUp").css("display", "none");
+        window.location.href = "../home/homepage.html";
 
     } else {
         console.log("not logged in");
