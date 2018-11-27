@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   $("#myheader").css({
     "width" : "100%",
-    "height" : "100px",
+    "height" : "70px",
     "background-color" : 	"#383838",
   });
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   $("#navigation").css({
     "width" : "100%",
-    "height" : "60px",
+    "height" : "50px",
     "float" : "left",
     "background-color" : "#DCDCDC",
     "border-bottom" : "1px #696969 solid"
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
   $("#contentbackground").css({
     "width" : "100%",
-    "height" : "750px",
+    "height" : "600px",
     "float" : "left"
   });
 
@@ -49,16 +49,14 @@ $(document).ready(function() {
   });
 
 
-  $("#headercontent").append("<img id='logoimg' src='https://dummyimage.com/60x60/000/fff' alt='logo'>");
+  $("#headercontent").append("<img id='logoimg' src='https://dummyimage.com/50x50/000/fff' alt='logo'>");
   $("#headercontent").append("<span id='title'>myMedicationApp</span>");
   $("#headercontent").append("<span class='headerwelcome'>User!</span>");
   $("#headercontent").append("<span class='headerwelcome'>Welcome </span>");
 
   $("#logoimg").css({
-    "font-size" : "2em",
     "display" : "block",
-    "margin-top": "10px",
-    "margin-bottom": "20px",
+    "margin-bottom": "5px",
     "float" : "left"
   });
 
@@ -67,9 +65,9 @@ $(document).ready(function() {
     "color" : "white",
     "font-family" : "Fredericka the Great, cursive",
     "display" : "block",
-    "margin-top": "20px",
+    "margin-top": "5px",
     "margin-left" : "10px",
-    "margin-bottom": "20px",
+    "margin-bottom": "5px",
     "float" : "left"
   });
 
@@ -78,7 +76,7 @@ $(document).ready(function() {
     "color" : "white",
     "font-family" : "Fredericka the Great, cursive",
     "display" : "block",
-    "margin-top": "20px",
+    "margin-top": "5px",
     "margin-left" : "10px",
     "margin-bottom": "20px",
     "float" : "right"
@@ -91,13 +89,13 @@ $(document).ready(function() {
   $(".buttons").css({
     "font-family" : "Open Sans, sans-serif",
     "margin-right" : "20px",
-    "font-size" : "1.5em",
+    "font-size" : "1.3em",
     "margin-top" : "10px"
   });
 
   $("#logout").css({
     "font-family" : "Open Sans, sans-serif",
-    "font-size" : "1.5em",
+    "font-size" : "1.3em",
     "float" : "right",
     "margin-top" : "10px"
   });
@@ -147,7 +145,7 @@ $(document).ready(function() {
     } else if (todaydate.getMonth() == 10) {
       return themonth[10];
     } else {
-      return "December";
+      return themonth[11];
     }
   }
 
@@ -172,40 +170,105 @@ $(document).ready(function() {
     }
   }
 
-  var datelist = [];
-  
 
-  $("#date").append(myDay() + ", ");
-  $("#date").append(myMonth() + " ");
-  $("#date").append("<span id='thedate'>" + todaydate.getDate() + "</span>, ");
-  $("#date").append(todaydate.getFullYear());
+  $("#date").append("<span id='thedate'>" + myDay()
+    + ", " + myMonth() + " " + todaydate.getDate()
+    + ", " + todaydate.getFullYear() + "</span>");
 
   $("#date").css({
     "font-family" : "Open Sans, sans-serif",
-    "font-size" : "1.5em",
+    "font-size" : "1.3em",
     "padding-top" : "15px",
     "text-align" : "center",
     "font-weight" : "bold"
   });
 
-  $("#date").append("<span id='rightdate'>Date: <input type='text id='datepicker'></span>");
+
+  $("#date").append("<img id='left' class='dateicon' src='./images/left-arrow.svg'>");
+  $("#date").append("<img id='right' class='dateicon' src='./images/right-arrow.svg'>");
 
   $(".dateicon").css({
     "height" : "50px",
     "width" : "50px",
     "margin-left" : "20px",
-    "margin-right" : "20px"
+    "margin-right" : "20px",
+    "margin-top" : "-10px"
   });
 
-  $("#rightdate").css({
+  $("#left").css({
+    "float" : "left"
+  });
+
+  $("#right").css({
     "float" : "right"
   });
 
-  var i = 0;
+  function expandDay(theDate) {
+    if (theDate == "Sun") {
+      return thedays[0];
+    } else if (theDate == "Mon") {
+      return thedays[1];
+    } else if (theDate == "Tue") {
+      return thedays[2];
+    } else if (theDate == "Wed") {
+      return thedays[3];
+    } else if (theDate == "Thu") {
+      return thedays[4];
+    } else if (theDate == "Fri") {
+      return thedays[5];
+    } else {
+      return thedays[6];
+    }
+  }
 
-  $("#delete").on("click", function(){
-    $("#date").append(todaydate.getDate()+i);
-    i++;
+  function expandMonth(theMonth) {
+    if (theMonth == "Jan") {
+      return themonth[0];
+    } else if (theMonth == "Feb") {
+      return themonth[1];
+    } else if (theMonth == "Mar") {
+      return themonth[2];
+    } else if (theMonth == "Apr") {
+      return themonth[3];
+    } else if (theMonth == "May") {
+      return themonth[4];
+    } else if (theMonth == "Jun") {
+      return themonth[5];
+    } else if (theMonth == "Jul") {
+      return themonth[6];
+    } else if (theMonth == "Aug") {
+      return themonth[7];
+    } else if (theMonth == "Sep") {
+      return themonth[8];
+    } else if (theMonth == "Oct") {
+      return themonth[9];
+    } else if (theMonth == "Nov") {
+      return themonth[10];
+    } else {
+      return themonth[11];
+    }
+  }
+
+  $("#left").on("click", function(){
+    var milliseconds = todaydate.setDate(todaydate.getDate() - 1);
+    var someDate = new Date(milliseconds);
+    var dayOfWeek = someDate.toString().substring(0, 3);
+    var monthExpanded = someDate.toString().substring(4, 7);
+    var previousDay = someDate.toString().substring(8, 15);
+    $("#thedate").empty();
+    $("#thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + previousDay);
+  });
+
+  $("#right").on("click", function(){
+    var milliseconds = todaydate.setDate(todaydate.getDate() + 1);
+    var someDate = new Date(milliseconds);
+    var dayOfWeek = someDate.toString().substring(0, 3);
+    var monthExpanded = someDate.toString().substring(4, 7);
+    var nextDay = someDate.toString().substring(8, 15);
+    $("#thedate").empty();
+    $("#thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + nextDay);
   });
 
   $("body").append("<div id='popupcover'></div>");
@@ -224,12 +287,12 @@ $(document).ready(function() {
 
   $("#popup").css({
     "width" : "950px",
-    "height": "700px",
+    "height": "650px",
     "background-color" : "white",
     "display" : "none",
     "margin" : "0 auto",
     "z-index" : "11",
-    "top" : "22%",
+    "top" : "5%",
     "left" : "20%",
     "right" : "20%",
     "position" : "absolute"

@@ -11,13 +11,7 @@
 <body>
   <div id='myheader'></div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="jquery.js"></script>
-<script>
-  $( function() {
-    $("#datepicker").datepicker();
-  });
-</script>
 
 <!-- Firebase initialization and logout function -->
 <!-- TODO: Figure out how to transfer authentication over -->
@@ -40,7 +34,7 @@
   var user = firebase.auth().currentUser;
   console.log(user);
   // Reference to current users id.
-  var id = user.uid;
+  var id = user.id;
 
   //Logout event
   const logOut = document.getElementById("logout")
