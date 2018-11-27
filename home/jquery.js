@@ -273,6 +273,7 @@ $(document).ready(function() {
 
   $("body").append("<div id='popupcover'></div>");
   $("body").append("<div id='popup'></div>");
+  $("#popup").append("<div id='cancelicon'></div>");
 
   $("#popupcover").css({
     "width" : "100%",
@@ -298,15 +299,53 @@ $(document).ready(function() {
     "position" : "absolute"
   });
 
+  $("#cancelicon").css({
+    "z-index" : "12",
+    "position" : "absolute",
+    "background-color" : "red",
+    "border-radius" : "50%",
+    "top" : "-3%",
+    "width" : "60px",
+    "height" : "60px",
+    "display" : "none",
+    "left" : "96%"
+  });
+
+  $("#cancelicon").append("<img id='cancel' src='./images/cancel.svg'>");
+
+  $("#cancel").css({
+    "width" : "50%",
+    "height" : "50%",
+    "display" : "block",
+    "margin-top" : "15px",
+    "margin-left" : "auto",
+    "margin-right" : "auto"
+  });
+
   $("#add").on("click", function(){
     $("#popupcover").fadeIn("slow");
     $("#popup").fadeIn("slow");
+    $("#cancelicon").fadeIn("slow");
   });
 
-  $("#popupcover").on("click", function(){
+  $("#popupcover, #cancelicon").on("click", function(){
     $("#popupcover").fadeOut("slow");
     $("#popup").fadeOut("slow");
+    $("#cancelicon").fadeOut("slow");
   });
+
+  $("#popup").append("<form id='popupform' onsubmit='getValues'>" +
+  "</form>");
+  $("#popupform").append("<div id='container1'></div>");
+  $("#container1").append("<span id='name'>Name of Medicine: <input type='text' name='inputName'></span><br>");
+  $("#container1").append("<span id='day'>How many times a day?</span><br>");
+  $("#container1").append("<span id='week'>How many times a week? </span> <br>");
+  $("#container1").append("<span id='until'>Until when? </span> <br>");
+  $("#container1").append("<span id='notes'>Additional Notes: </span> <br>");
+
+  for (i = 3; i >= 1; i--){
+    $("#day").after("<input type='radio' id='day" + i + "1'><label for='day" + i + "'>" + i + "</label>");
+  }
 
 
 });

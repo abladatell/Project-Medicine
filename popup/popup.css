@@ -1,29 +1,7 @@
-form {
-  width: 70%;
-  text-align: justify;
-  column-count: 2;
-}
-
-input[type=text] {
-  width: 90%;
-}
-
-#datepicker {
-  margin-top: 2.6rem;
-  width: 80%;
-  font-size:  1rem;
-}
-
 span {
   text-align: left;
 }
 
-.checkBoxGroup {
-  display: inline-block;
-  text-align: center;
-  margin: 0;
-
-}
 
 label {
   display: block;
@@ -46,9 +24,8 @@ input[type=button] {
 
 #container1 {
   width: 90%;
-  display: inline-block;
+  display: block;
   margin: 1rem;
-  font-family: sans-serif;
   font-size: 1.5rem;
   margin-right: 0;
   text-align: right;
