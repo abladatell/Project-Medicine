@@ -85,7 +85,9 @@ $(document).ready(function() {
 
   $("#navigationcontent").append("<button class='buttons' id='add'>Add Medication</button>");
   $("#navigationcontent").append("<button class='buttons' id='delete'>Delete Medication</button>");
-  $("#navigationcontent").append("<span id='logout'>Logout</span>");
+  $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Logout</span>");
+
+
 
   $(".buttons").css({
     "font-family" : "Open Sans, sans-serif",
@@ -340,8 +342,6 @@ $(document).ready(function() {
   $("#popupform").append("<div id='container1'></div>");
   $("#container1").append("<span id='name'>Name of Medicine: <input class='textfield' type='text' name='inputName'></span><br><br>");
   $("#container1").append("<span id='day'>How many times a day?</span><br><br>");
-  $("#container1").append("<span id='week'>How many times a week? </span> <br><br>");
-  $("#container1").append("<span id='until'>Until when? </span> <br><br>");
   $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
 
   for (i = 3; i >= 1; i--){
@@ -357,8 +357,8 @@ $(document).ready(function() {
   $("#until").append("<input class='textfield' type='text' id='datepicker' placeholder='yyyymmdd'>");
   $("#notes").append("<br><textarea rows='4' cols='70'></textarea>");
 
-  $("#container1").append("<div id='buttons'><input class='textfield' type='submit'> "
-    + "<input class='textfield' type='button' value='Cancel'></div>");
+  $("#container1").append("<div id='buttons'><input class='textfield' id='submitbutton' type='submit'> "
+    + "<input class='textfield' type='button' id='cancelbutton' value='Cancel'></div>");
 
   $("#container1").css({
     "padding-left" : "10%",
@@ -373,8 +373,13 @@ $(document).ready(function() {
   });
 
 
-
-
-
+  $("#submitbutton").on("click", function(){
+  });
 
 });
+
+var user = sessionStorage.getItem("uid");
+
+function submitToDatabase() {
+    var med = db.ref("user");
+}

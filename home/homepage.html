@@ -35,15 +35,15 @@
   var user = firebase.auth().currentUser;
   console.log(user);
   // Reference to current users id.
-  var id = user.id;
+  var id = sessionStorage.getItem("uid");
 
-  //Logout event
+  /**
   const logOut = document.getElementById("logout")
   logOut.addEventListener("click", e => {
       console.log("Signing out");
       firebase.auth().signOut();
   });
-
+**/
   // Checks if logged in, and if not redirects to login page.
   firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
@@ -54,6 +54,12 @@
           window.location.href = "../login/index.html";
       }
   });
+
+  function logOut(){
+    console.log("Logged Off");
+    firebase.auth().signOut();
+
+  };
 </script>
 </body>
 </html>
