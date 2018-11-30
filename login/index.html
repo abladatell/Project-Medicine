@@ -33,7 +33,6 @@
       // Reference to database.
       const db = firebase.database();
 
-
       // Initialize the FirebaseUI Widget using Firebase.
       firebase.auth().onAuthStateChanged(function(user) {
         db.ref().child("user/" + user.uid).update({

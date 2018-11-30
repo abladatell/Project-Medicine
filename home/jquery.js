@@ -340,7 +340,7 @@ $(document).ready(function() {
   $("#popup").append("<form id='popupform' onsubmit='getValues'>" +
   "</form>");
   $("#popupform").append("<div id='container1'></div>");
-  $("#container1").append("<span id='name'>Name of Medicine: <input class='textfield' type='text' name='inputName'></span><br><br>");
+  $("#container1").append("<span id='name'>Name of Medicine: <input id='inputName' class='textfield' type='text' name='inputName'></span><br><br>");
   $("#container1").append("<span id='day'>How many times a day?</span><br><br>");
   $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
 
@@ -348,14 +348,8 @@ $(document).ready(function() {
     $("#day").after("<input type='radio' id='day" + i + "'><label for='day" + i + "'>" + i + "</label> ");
   }
 
-  $("#week").after("<input type='radio' id='week7'><label for='week7'>Daily</label>");
-
-  for (i = 6; i >= 1; i--){
-    $("#week").after("<input type='radio' id='week" + i + "'><label for='week" + i + "'>" + i + "</label>  ");
-  }
-
   $("#until").append("<input class='textfield' type='text' id='datepicker' placeholder='yyyymmdd'>");
-  $("#notes").append("<br><textarea rows='4' cols='70'></textarea>");
+  $("#notes").append("<br><textarea id='fieldbox' rows='4' cols='70'></textarea>");
 
   $("#container1").append("<div id='buttons'><input class='textfield' id='submitbutton' type='submit'> "
     + "<input class='textfield' type='button' id='cancelbutton' value='Cancel'></div>");
@@ -374,12 +368,20 @@ $(document).ready(function() {
 
 
   $("#submitbutton").on("click", function(){
+    var root = firebase.database().ref().child('name');
+    var myMedName = $('#inputName').val();
+    var myNotes = $('#fieldbox').val();
+
+    root.push().set({
+     MyMedication : myMedName
+    })
+
+    var rootMed = root.child('MyMedication');
+
+    rootMed.push().set({
+      AdditionalNotes : myNotes
+    })
+
   });
 
 });
-
-var user = sessionStorage.getItem("uid");
-
-function submitToDatabase() {
-    var med = db.ref("user");
-}
