@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="popup.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
     <title>Add Your Medication</title>
 
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
+    authDomain: "project-medicine-e92db.firebaseapp.com",
+    databaseURL: "https://project-medicine-e92db.firebaseio.com",
+    projectId: "project-medicine-e92db",
+    storageBucket: "project-medicine-e92db.appspot.com",
+    messagingSenderId: "625232278011"
+    };
+    firebase.initializeApp(config);
+    </script>
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="http://www.json.org/json2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-      $(function(){
-        $("#datepicker").datepicker({
-          changeMonth: true,
-          changeYear: true
-        });
-
-
-
-      });
+    $(function(){
+    $("#datepicker").datepicker();
+    });
     </script>
+
   </head>
 
   <body>
@@ -31,7 +43,7 @@
         <span id="week">How many times a week?</span><br><br><br>
 
 
-        <span id="until">Until when?</span><br><br><br><br>
+        <span id="until">For how many days?</span><br><br><br><br>
         <br>
 
         <span id="notes">Additional Notes:</span><br><br><br><br><br>
@@ -40,7 +52,7 @@
 
 
       <div id="container2">
-        <input type="text" name="inputName"><br>
+        <input type="text" id="medicineName" name="inputName"><br>
 
         <div class="checkBoxGroup">
           <input type="radio" name="formDay" id="day1"><label for="day1">1</label>
@@ -74,34 +86,20 @@
           <input type="radio" name="formWeek" id="week7"><label for="week7">Daily</label>
         </div><br>
 
-        <input type="text" id="datepicker" value="Click here to enter date">
+        <input type="text" id="datepicker" value="500">
 
-        <textarea rows="4" cols="50"></textarea>
+        <textarea id="additionalNotes" rows="4" cols="50"></textarea>
       </div>
       <br><br>
       <div id="buttons">
       <input type="submit" name="mySubmit">
-      <input type="button" value="Cancel" onlclick="self.close()">
+      <input type="button" id="close" value="Cancel">
       </div>
 
     </form>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $("input[type='radio']").click(function(){
-          var radioValue1 = $("input[name='formDay']:checked").val();
-          var radioValue2 = $("input[name='formWeek']:checked").val();
-          if(radioValue1) {
-            alert(radioValue1);
-          }
-          if(radioValue2) {
-            alert(radioValue2);
-          }
-        });
+    <script src="js/main.js"></script>
 
-      });
 
-    </script>
   </body>
 </html>
