@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $("body, html").css({
     "margin" : "0px",
     "padding" : "0px",
@@ -84,7 +85,9 @@ $(document).ready(function() {
 
   $("#navigationcontent").append("<button class='buttons' id='add'>Add Medication</button>");
   $("#navigationcontent").append("<button class='buttons' id='delete'>Delete Medication</button>");
-  $("#navigationcontent").append("<span id='logout'>Logout</span>");
+  $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Logout</span>");
+
+
 
   $(".buttons").css({
     "font-family" : "Open Sans, sans-serif",
@@ -273,6 +276,7 @@ $(document).ready(function() {
 
   $("body").append("<div id='popupcover'></div>");
   $("body").append("<div id='popup'></div>");
+  $("#popup").append("<div id='cancelicon'></div>");
 
   $("#popupcover").css({
     "width" : "100%",
@@ -286,8 +290,8 @@ $(document).ready(function() {
   });
 
   $("#popup").css({
-    "width" : "950px",
-    "height": "650px",
+    "width" : "800px",
+    "height": "550px",
     "background-color" : "white",
     "display" : "none",
     "margin" : "0 auto",
@@ -298,15 +302,84 @@ $(document).ready(function() {
     "position" : "absolute"
   });
 
+  $("#cancelicon").css({
+    "z-index" : "12",
+    "position" : "absolute",
+    "background-color" : "red",
+    "border-radius" : "50%",
+    "top" : "-3%",
+    "width" : "60px",
+    "height" : "60px",
+    "display" : "none",
+    "left" : "96%"
+  });
+
+  $("#cancelicon").append("<img id='cancel' src='./images/cancel.svg'>");
+
+  $("#cancel").css({
+    "width" : "50%",
+    "height" : "50%",
+    "display" : "block",
+    "margin-top" : "15px",
+    "margin-left" : "auto",
+    "margin-right" : "auto"
+  });
+
   $("#add").on("click", function(){
     $("#popupcover").fadeIn("slow");
     $("#popup").fadeIn("slow");
+    $("#cancelicon").fadeIn("slow");
   });
 
-  $("#popupcover").on("click", function(){
+  $("#popupcover, #cancelicon").on("click", function(){
     $("#popupcover").fadeOut("slow");
     $("#popup").fadeOut("slow");
+    $("#cancelicon").fadeOut("slow");
+  });
+
+  $("#popup").append("<form id='popupform' onsubmit='getValues'>" +
+  "</form>");
+  $("#popupform").append("<div id='container1'></div>");
+  $("#container1").append("<span id='name'>Name of Medicine: <input class='textfield' type='text' name='inputName'></span><br><br>");
+  $("#container1").append("<span id='day'>How many times a day?</span><br><br>");
+  $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
+
+  for (i = 3; i >= 1; i--){
+    $("#day").after("<input type='radio' id='day" + i + "'><label for='day" + i + "'>" + i + "</label> ");
+  }
+
+  $("#week").after("<input type='radio' id='week7'><label for='week7'>Daily</label>");
+
+  for (i = 6; i >= 1; i--){
+    $("#week").after("<input type='radio' id='week" + i + "'><label for='week" + i + "'>" + i + "</label>  ");
+  }
+
+  $("#until").append("<input class='textfield' type='text' id='datepicker' placeholder='yyyymmdd'>");
+  $("#notes").append("<br><textarea rows='4' cols='70'></textarea>");
+
+  $("#container1").append("<div id='buttons'><input class='textfield' id='submitbutton' type='submit'> "
+    + "<input class='textfield' type='button' id='cancelbutton' value='Cancel'></div>");
+
+  $("#container1").css({
+    "padding-left" : "10%",
+    "padding-right" : "20%",
+    "padding-top" : "10%",
+    "font-size" : "1.3em",
+    "font-family" : "Open Sans, sans-serif"
+  });
+
+  $(".textfield").css({
+    "font-size" : "1em"
   });
 
 
+  $("#submitbutton").on("click", function(){
+  });
+
 });
+
+var user = sessionStorage.getItem("uid");
+
+function submitToDatabase() {
+    var med = db.ref("user");
+}

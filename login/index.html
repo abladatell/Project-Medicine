@@ -1,23 +1,82 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset = "utf-8">
-        <title>
-            Project Medicine
-        </title>
-        <script src = "https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel = "stylesheet" type = "text/css" href = "scripts/index.css">
-    </head>
-    <body>
-        <div class = "container" id = "logInContainer">
-            <input type = "email" id = "email" placeholder = "Email" class = "logInInput">
-            <input type = "password" id = "password" placeholder = "Password" class = "logInInput">
-            <button id = "logIn">Log in </button>
-            <button id = "signUp">Sign up </button>
-            <button id = "signOut">Sign out </button>
-        </div>
+  <head>
+    <meta charset = "utf-8">
+    <title>
+      Project Medicine
+    </title>
+    <script src = "https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "./css/firebaseloginstyle.css"/>
+  </head>
+  <body>
+      <!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+    <h1>myMedicationApp</h1>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
 
-        <script src = "scripts/index.js"></script>
-    </body>
+    <script>
+
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAS4eP5OxjbqdOfigIf9s3ICIfLB723WjM",
+        authDomain: "project-medicine-e92db.firebaseapp.com",
+        databaseURL: "https://project-medicine-e92db.firebaseio.com",
+        projectId: "project-medicine-e92db",
+        storageBucket: "project-medicine-e92db.appspot.com",
+        messagingSenderId: "625232278011"
+      };
+      firebase.initializeApp(config);
+
+      // Reference to database.
+      const db = firebase.database();
+
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      firebase.auth().onAuthStateChanged(function(user) {
+        db.ref().child("user/" + user.uid).update({
+            "name": user.displayName,
+            "email": user.email
+        });
+        console.log(user.email);
+        sessionStorage.setItem("uid", user.uid);
+        sessionStorage.setItem("name", user.displayName);
+     });
+
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      var uiConfig = {
+        callbacks: {
+          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            // User successfully signed in.
+            // Return type determines whether we continue the redirect automatically
+            // or whether we leave that to developer to handle.
+            return true;
+          },
+          uiShown: function() {
+            // The widget is rendered.
+            // Hide the loader.
+            document.getElementById('loader').style.display = 'none';
+          }
+        },
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: '../home/homepage.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url.
+        privacyPolicyUrl: '<your-privacy-policy-url>'
+      };
+
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+
+
+    </script>
+  </body>
 </html>
