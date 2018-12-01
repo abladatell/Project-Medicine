@@ -37,7 +37,8 @@
       firebase.auth().onAuthStateChanged(function(user) {
         db.ref().child("user/" + user.uid).update({
             "name": user.displayName,
-            "email": user.email
+            "email": user.email,
+            "uid": user.uid
         });
         console.log(user.email);
         sessionStorage.setItem("uid", user.uid);

@@ -368,19 +368,25 @@ $(document).ready(function() {
 
 
   $("#submitbutton").on("click", function(){
-    var root = firebase.database().ref().child('name');
+
+    var id = sessionStorage.getItem("uid");
+
+    var entry = firebase.database().ref().child('medications/' + id).push();
+    var entry2 = firebase.database().ref('medications/' + id).push().child('additional-notes');
+
     var myMedName = $('#inputName').val();
     var myNotes = $('#fieldbox').val();
 
-    root.push().set({
-     MyMedication : myMedName
-    })
+    var myTimeStamp = Date.now();
+    console.log(myTimeStamp);
 
-    var rootMed = root.child('MyMedication');
+    entry.update({
+      "medication" : myMedName,
+      "additional-notes" : myNotes,
+      "timestamp" : myTimeStamp
+    });
 
-    rootMed.push().set({
-      AdditionalNotes : myNotes
-    })
+    window.alert("Working!");
 
   });
 
