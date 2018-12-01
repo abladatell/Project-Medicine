@@ -1,139 +1,24 @@
 $(document).ready(function() {
 
-  $("body, html").css({
-    "margin" : "0px",
-    "padding" : "0px",
-    "background-color" : "#DCDCDC"
-  });
-
-  $("#myheader").css({
-    "width" : "100%",
-    "height" : "70px",
-    "background-color" : 	"#383838",
-  });
-
   $("body").append("<div id='navigation'></div>");
   $("body").append("<div id='contentbackground'></div>");
-
-  $("#navigation").css({
-    "width" : "100%",
-    "height" : "50px",
-    "float" : "left",
-    "background-color" : "#DCDCDC",
-    "border-bottom" : "1px #696969 solid"
-  });
-
-  $("#contentbackground").css({
-    "width" : "100%",
-    "height" : "600px",
-    "float" : "left"
-  });
 
   $("#myheader").append("<div class='frame' id='headercontent' class='tempcolor'></div>");
   $("#navigation").append("<div class='frame' id='navigationcontent'></div>");
   $("#contentbackground").append("<div class='frame' id='schedule'></div>");
 
-  $(".frame").css({
-    "width" : "1160px",
-    "height" : "100%",
-    "margin-left" : "auto",
-    "margin-right" : "auto",
-    "padding-left" : "20px",
-    "padding-right" : "20px"
-  });
-
-  $(".tempcolor").css("background-color", "green");
-
-  $("#headercontent").css({
-    "padding-top" : "10px",
-    "padding-bottom" : "10px"
-  });
-
-
-  function myFunction(num) {
-      if (num.matches) { // If media query matches
-          $("#title").css("color" , "green");
-      } else if (num.matches == y) {
-          $("#title").css("color" , "orange");
-      } else {}
-          $("#title").css("color" , "white");
-      }
-  }
-
-  var x = window.matchMedia("(max-width: 1160px)");
-  var y = window.matchMedia("(max-width: 800px)");
-  myFunction(x); // Call listener function at run time
-  x.addListener(myFunction);
-
   $("#headercontent").append("<img id='logoimg' src='https://dummyimage.com/50x50/000/fff' alt='logo'>");
   $("#headercontent").append("<span id='title'>myMedicationApp</span>");
-  $("#headercontent").append("<span class='headerwelcome'>User!</span>");
+  $("#headercontent").append("<span class='headerwelcome' id='theuser'>User!</span>");
   $("#headercontent").append("<span class='headerwelcome'>Welcome </span>");
 
-  $("#logoimg").css({
-    "display" : "block",
-    "margin-bottom": "5px",
-    "float" : "left"
-  });
-
-  $("#title").css({
-    "font-size" : "2em",
-    "color" : "white",
-    "font-family" : "Fredericka the Great, cursive",
-    "display" : "block",
-    "margin-top": "5px",
-    "margin-left" : "10px",
-    "margin-bottom": "5px",
-    "float" : "left"
-  });
-
-  $(".headerwelcome").css({
-    "font-size" : "1.8em",
-    "color" : "white",
-    "font-family" : "Fredericka the Great, cursive",
-    "display" : "block",
-    "margin-top": "5px",
-    "margin-left" : "10px",
-    "margin-bottom": "20px",
-    "float" : "right"
-  });
 
   $("#navigationcontent").append("<button class='buttons' id='add'>Add Medication</button>");
   $("#navigationcontent").append("<button class='buttons' id='delete'>Delete Medication</button>");
   $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Logout</span>");
 
-
-
-  $(".buttons").css({
-    "font-family" : "Open Sans, sans-serif",
-    "margin-right" : "20px",
-    "font-size" : "1.3em",
-    "margin-top" : "10px"
-  });
-
-  $("#logout").css({
-    "font-family" : "Open Sans, sans-serif",
-    "font-size" : "1.3em",
-    "float" : "right",
-    "margin-top" : "10px",
-    "margin-right" : "20px"
-  });
-
   $("#schedule").append("<div id='date'></div>");
   $("#schedule").append("<div id='schedule_list'></div>");
-
-  $("#date").css({
-    "width" : "100%",
-    "height" : "9%",
-  })
-
-  $("#schedule_list").css({
-    "width" : "100%",
-    "height" : "91%",
-    "background-color" : "#C8C8C8",
-    "border-top" : "2px #696969 solid "
-  })
-
 
   var todaydate = new Date(); //Initialize default date, which is today.
 
@@ -194,33 +79,12 @@ $(document).ready(function() {
     + ", " + myMonth() + " " + todaydate.getDate()
     + ", " + todaydate.getFullYear() + "</span>");
 
-  $("#date").css({
-    "font-family" : "Open Sans, sans-serif",
-    "font-size" : "1.3em",
-    "padding-top" : "15px",
-    "text-align" : "center",
-    "font-weight" : "bold"
-  });
 
 
   $("#date").append("<img id='left' class='dateicon' src='./images/left-arrow.svg'>");
   $("#date").append("<img id='right' class='dateicon' src='./images/right-arrow.svg'>");
 
-  $(".dateicon").css({
-    "height" : "50px",
-    "width" : "50px",
-    "margin-left" : "20px",
-    "margin-right" : "20px",
-    "margin-top" : "-10px"
-  });
 
-  $("#left").css({
-    "float" : "left"
-  });
-
-  $("#right").css({
-    "float" : "right"
-  });
 
   function expandDay(theDate) {
     if (theDate == "Sun") {
@@ -294,52 +158,7 @@ $(document).ready(function() {
   $("body").append("<div id='popup'></div>");
   $("#popup").append("<div id='cancelicon'></div>");
 
-  $("#popupcover").css({
-    "width" : "100%",
-    "height" : "100%",
-    "position" : "absolute",
-    "background-color" : "rgba(0, 0, 0, 0.5)",
-    "top" : "0",
-    "left" : "0",
-    "z-index" : "10",
-    "display" : "none"
-  });
-
-  $("#popup").css({
-    "width" : "800px",
-    "height": "550px",
-    "background-color" : "white",
-    "display" : "none",
-    "margin" : "0 auto",
-    "z-index" : "11",
-    "top" : "5%",
-    "left" : "20%",
-    "right" : "20%",
-    "position" : "absolute"
-  });
-
-  $("#cancelicon").css({
-    "z-index" : "12",
-    "position" : "absolute",
-    "background-color" : "red",
-    "border-radius" : "50%",
-    "top" : "-3%",
-    "width" : "60px",
-    "height" : "60px",
-    "display" : "none",
-    "left" : "96%"
-  });
-
   $("#cancelicon").append("<img id='cancel' src='./images/cancel.svg'>");
-
-  $("#cancel").css({
-    "width" : "50%",
-    "height" : "50%",
-    "display" : "block",
-    "margin-top" : "15px",
-    "margin-left" : "auto",
-    "margin-right" : "auto"
-  });
 
   $("#add").on("click", function(){
     $("#popupcover").fadeIn("slow");
@@ -376,19 +195,6 @@ $(document).ready(function() {
   $("#container1").append("<div id='buttons'><input class='textfield' id='submitbutton' type='submit'> "
     + "<input class='textfield' type='button' id='cancelbutton' value='Cancel'></div>");
 
-  $("#container1").css({
-    "padding-left" : "10%",
-    "padding-right" : "20%",
-    "padding-top" : "10%",
-    "font-size" : "1.3em",
-    "font-family" : "Open Sans, sans-serif"
-  });
-
-  $(".textfield").css({
-    "font-size" : "1em"
-  });
-
-
   $("#submitbutton").on("click", function(){
 
     var id = sessionStorage.getItem("uid");
@@ -410,10 +216,6 @@ $(document).ready(function() {
 
     window.alert("Working!");
 
-
-
   });
-
-
 
 });
