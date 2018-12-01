@@ -50,6 +50,21 @@ $(document).ready(function() {
   });
 
 
+  function myFunction(num) {
+      if (num.matches) { // If media query matches
+          $("#title").css("color" , "green");
+      } else if (num.matches == y) {
+          $("#title").css("color" , "orange");
+      } else {}
+          $("#title").css("color" , "white");
+      }
+  }
+
+  var x = window.matchMedia("(max-width: 1160px)");
+  var y = window.matchMedia("(max-width: 800px)");
+  myFunction(x); // Call listener function at run time
+  x.addListener(myFunction);
+
   $("#headercontent").append("<img id='logoimg' src='https://dummyimage.com/50x50/000/fff' alt='logo'>");
   $("#headercontent").append("<span id='title'>myMedicationApp</span>");
   $("#headercontent").append("<span class='headerwelcome'>User!</span>");
@@ -100,7 +115,8 @@ $(document).ready(function() {
     "font-family" : "Open Sans, sans-serif",
     "font-size" : "1.3em",
     "float" : "right",
-    "margin-top" : "10px"
+    "margin-top" : "10px",
+    "margin-right" : "20px"
   });
 
   $("#schedule").append("<div id='date'></div>");
@@ -388,6 +404,10 @@ $(document).ready(function() {
 
     window.alert("Working!");
 
+
+
   });
+
+
 
 });
