@@ -361,7 +361,13 @@ $(document).ready(function() {
   $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
 
   for (i = 3; i >= 1; i--){
-    $("#day").after("<input type='radio' id='day" + i + "'><label for='day" + i + "'>" + i + "</label> ");
+    $("#day").after("<input type='radio' name='dayName' id='day" + i + "'><label for='day" + i + "'>" + i + "</label> ");
+  }
+
+  $("#week").after("<input type='radio' name='weekName' id='week7'><label for='week7'>Daily</label>");
+
+  for (i = 6; i >= 1; i--){
+    $("#week").after("<input type='radio' name='weekName' id='week" + i + "'><label for='week" + i + "'>" + i + "</label>  ");
   }
 
   $("#until").append("<input class='textfield' type='text' id='datepicker' placeholder='yyyymmdd'>");
