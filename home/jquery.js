@@ -160,19 +160,17 @@ $(document).ready(function() {
 
   $("#add").on("click", function(){
     $("#popupcover").fadeIn("slow");
+    $("#popup").css("display", "block");
     $("#popup").fadeIn("slow");
     $("#cancelicon").fadeIn("slow");
   });
 
-  $("#popupcover, #cancelicon").on("click", function(){
-    $("#popupcover").fadeOut("slow");
-    $("#popup").fadeOut("slow");
-    $("#cancelicon").fadeOut("slow");
-  });
+  $("#popup").append("<div id='popupformdiv'></div>");
 
-  $("#popup").append("<form id='popupform' onsubmit='getValues'>" +
-  "</form>");
+  $("#popup").append("<form id='popupform' onsubmit='getValues'>"
+    + "</form>");
   $("#popupform").append("<div id='container1'></div>");
+  $("#container1").append("<div id='popupname'>Add Medication</div><br>");
   $("#container1").append("<span id='name'>Name of Medicine: <input id='inputName' class='textfield' type='text' name='inputName'></span><br><br>");
   $("#container1").append("<span id='day'>How many times a day?</span><br><br>");
   $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
@@ -193,6 +191,12 @@ $(document).ready(function() {
   $("#container1").append("<div id='buttons'><input class='textfield' id='submitbutton' type='submit'> "
     + "<input class='textfield' type='button' id='cancelbutton' value='Cancel'></div>");
 
+  $("#popupcover, #cancelicon, #cancelbutton").on("click", function(){
+    $("#popupcover").fadeOut("slow");
+    $("#popup").fadeOut("slow");
+    $("#cancelicon").fadeOut("slow");
+  });
+
   $("#submitbutton").on("click", function(){
 
     var id = sessionStorage.getItem("uid");
@@ -210,7 +214,7 @@ $(document).ready(function() {
       "medication" : myMedName,
       "additional-notes" : myNotes,
       "timestamp" : myTimeStamp
-    });
+  });
 
     window.alert("Working!");
 
