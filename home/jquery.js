@@ -3,19 +3,19 @@ $(document).ready(function() {
   $("body").append("<div id='navigation'></div>");
   $("body").append("<div id='contentbackground'></div>");
 
-  $("#myheader").append("<div class='frame' id='headercontent' class='tempcolor'></div>");
+  $("#myheader").append("<div class='frame' id='headercontent' class='mobilecolor'></div>");
+  $("#myheader").after("<div class='frame' id='welcomemobile'><span class='headerwelcome'>Welcome <span>User!</span></span></div>");
   $("#navigation").append("<div class='frame' id='navigationcontent'></div>");
   $("#contentbackground").append("<div class='frame' id='schedule'></div>");
 
   $("#headercontent").append("<img id='logoimg' src='https://dummyimage.com/50x50/000/fff' alt='logo'>");
   $("#headercontent").append("<span id='title'>myMedicationApp</span>");
-  $("#headercontent").append("<span class='headerwelcome' id='theuser'>User!</span>");
-  $("#headercontent").append("<span class='headerwelcome'>Welcome </span>");
+  $("#headercontent").append("<span class='headerwelcome' id='theuser'>User!</span><img id='logoutmobile' src='./images/logout.svg'>");
+  $("#headercontent").append("<span class='headerwelcome' id='welcomedefault'>Welcome </span>");
 
-
-  $("#navigationcontent").append("<button class='buttons' id='add'>Add Medication</button>");
-  $("#navigationcontent").append("<button class='buttons' id='delete'>Delete Medication</button>");
-  $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Logout</span>");
+  $("#navigationcontent").append("<span class='buttonbox'><button class='buttons' id='add'>Add Medication</button></span>");
+  $("#navigationcontent").append("<span class='buttonbox'><button class='buttons' id='delete'>Delete Medication</button></span>");
+  $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Sign out</span>");
 
   $("#schedule").append("<div id='date'></div>");
   $("#schedule").append("<div id='schedule_list'></div>");
@@ -75,15 +75,13 @@ $(document).ready(function() {
   }
 
 
+
   $("#date").append("<span id='thedate'>" + myDay()
     + ", " + myMonth() + " " + todaydate.getDate()
     + ", " + todaydate.getFullYear() + "</span>");
 
-
-
-  $("#date").append("<img id='left' class='dateicon' src='./images/left-arrow.svg'>");
-  $("#date").append("<img id='right' class='dateicon' src='./images/right-arrow.svg'>");
-
+  $("#date").append("<img class='left' id='leftdesktop' class='dateicon' src='./images/left-arrow.svg'>");
+  $("#date").append("<img class='right' id='rightdesktop' class='dateicon' src='./images/right-arrow.svg'>");
 
 
   function expandDay(theDate) {
@@ -132,7 +130,7 @@ $(document).ready(function() {
     }
   }
 
-  $("#left").on("click", function(){
+  $(".left").on("click", function(){
     var milliseconds = todaydate.setDate(todaydate.getDate() - 1);
     var someDate = new Date(milliseconds);
     var dayOfWeek = someDate.toString().substring(0, 3);
@@ -143,7 +141,7 @@ $(document).ready(function() {
       + " " + previousDay);
   });
 
-  $("#right").on("click", function(){
+  $(".right").on("click", function(){
     var milliseconds = todaydate.setDate(todaydate.getDate() + 1);
     var someDate = new Date(milliseconds);
     var dayOfWeek = someDate.toString().substring(0, 3);

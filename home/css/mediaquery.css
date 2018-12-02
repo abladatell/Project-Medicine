@@ -1,0 +1,231 @@
+@media only screen and (max-width: 649px) {
+
+    #logoimg {
+      display: none;
+    }
+
+    #title {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      float: none;
+      width: 100%;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .frame {
+      width: 100%;
+      padding-left : 0;
+      padding-right : 0;
+    }
+
+    #welcomemobile {
+      margin-left : auto;
+      margin-right : auto;
+      display : block;
+      width : 100%;
+      float: left;
+      background-color : #383838;
+      font-size : 0.90em;
+      text-align : center;
+    }
+
+    #welcomemobile > .headerwelcome {
+      float : none;
+    }
+
+    #theuser, #welcomedefault {
+      display: none;
+    }
+
+    .buttonbox {
+      width: 50%;
+      float: left;
+      display: block;
+      font-size: 0.8em;
+    }
+
+    .buttons {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      text-align: center;
+      float: none;
+      text-align: center;
+    }
+
+    #leftdesktop, #rightdesktop {
+      width: 40px;
+      height: 40px;
+      display: block;
+      float: left;
+    }
+
+    #logout {
+      display: none;
+    }
+
+    #logoutmobile {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 10px;
+      top: 75px;
+    }
+
+    #headercontent {
+      padding-top : 0px;
+      padding-bottom : 0px;
+      background-color: #383838;
+    }
+
+    #date {
+      font-size : 1.1em;
+    }
+
+}
+
+@media only screen and (min-width: 650px) and (max-width: 1159px) {
+    #title {
+        margin-left : 10px;
+    }
+
+    .frame {
+      width: 95%;
+    }
+
+    #welcomemobile {
+      display : none;
+    }
+
+    #logoimg {
+      display : block;
+      margin-bottom: 5px;
+      float : left
+    }
+
+    .buttons {
+      display: block;
+      text-align: left;
+    }
+
+    #leftdesktop {
+      float : left;
+    }
+
+    #rightdesktop {
+      float : right;
+      padding-right : 0px;
+    }
+
+
+    #headercontent {
+      padding-top : 10px;
+      padding-bottom : 10px;
+    }
+
+    #title {
+      font-size : 2em;
+      color : white;
+      font-family : Fredericka the Great, cursive;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    #logoutmobile {
+      display: none;
+    }
+
+    #leftdesktop, #rightdesktop {
+      width: 50px;
+      height: 50px;
+      display: block;
+      float: left;
+    }
+
+    #date {
+      font-size : 1.3em;
+    }
+
+    .buttonbox {
+      width: 160px;
+      float: left;
+      display: block;
+      font-size: 0.8em;
+    }
+
+
+}
+
+@media only screen and (min-width: 1160px) {
+    #title {
+        margin-left : 10px;
+    }
+
+    .frame {
+      width: 1160px;
+      padding-left : 20px;
+    }
+
+    #welcomemobile {
+      display : none;
+    }
+
+    #logoimg {
+      display : block;
+      margin-bottom: 5px;
+      float : left
+    }
+
+    .buttonbox {
+      width: 180px;
+      float: left;
+      display: block;
+      font-size: 0.9em;
+    }
+
+    .buttons {
+      display: block;
+      text-align: left;
+    }
+
+    #leftdesktop {
+      float : left;
+    }
+
+    #rightdesktop {
+      float : right;
+      padding-right : 0px;
+    }
+
+    #headercontent {
+      padding-top : 10px;
+      padding-bottom : 10px;
+    }
+
+    #title {
+      font-size : 2em;
+      color : white;
+      font-family : Fredericka the Great, cursive;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    #date {
+      font-size : 1.4em;
+    }
+
+    #logoutmobile {
+      display: none;
+    }
+
+    #leftdesktop, #rightdesktop {
+      width: 50px;
+      height: 50px;
+      display: block;
+      float: left;
+    }
+
+}
