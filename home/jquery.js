@@ -4,13 +4,13 @@ $(document).ready(function() {
   $("body").append("<div id='contentbackground'></div>");
 
   $("#myheader").append("<div class='frame' id='headercontent' class='mobilecolor'></div>");
-  $("#myheader").after("<div class='frame' id='welcomemobile'><span class='headerwelcome'>Welcome <span>User!</span></span></div>");
+  $("#myheader").after("<div class='frame' id='welcomemobile'><span class='headerwelcome'>Welcome <span id='theusermobile'>!</span></span></div>");
   $("#navigation").append("<div class='frame' id='navigationcontent'></div>");
   $("#contentbackground").append("<div class='frame' id='schedule'></div>");
 
   $("#headercontent").append("<img id='logoimg' src='https://dummyimage.com/50x50/000/fff' alt='logo'>");
   $("#headercontent").append("<span id='title'>myMedicationApp</span>");
-  $("#headercontent").append("<span class='headerwelcome' id='theuser'>User!</span><img id='logoutmobile' src='./images/logout.svg'>");
+  $("#headercontent").append("<span class='headerwelcome' id='theuserdesktop'>!</span><img id='logoutmobile' onclick='logOut()' src='./images/logout.svg'>");
   $("#headercontent").append("<span class='headerwelcome' id='welcomedefault'>Welcome </span>");
 
   $("#navigationcontent").append("<span class='buttonbox'><button class='buttons' id='add'>Add Medication</button></span>");
@@ -76,9 +76,17 @@ $(document).ready(function() {
 
 
 
-  $("#date").append("<span id='thedate'>" + myDay()
-    + ", " + myMonth() + " " + todaydate.getDate()
+  $("#date").append("<span class='thedate'>" + myDay()
+    + ", " + myMonth() + " " + checkNumber(todaydate.getDate())
     + ", " + todaydate.getFullYear() + "</span>");
+
+  function checkNumber(num) {
+    if (num < 10) {
+      return "0" + num;
+    }
+  }
+
+  console.log(todaydate.getDate());
 
   $("#date").append("<img class='left' id='leftdesktop' class='dateicon' src='./images/left-arrow.svg'>");
   $("#date").append("<img class='right' id='rightdesktop' class='dateicon' src='./images/right-arrow.svg'>");
@@ -135,10 +143,12 @@ $(document).ready(function() {
     var someDate = new Date(milliseconds);
     var dayOfWeek = someDate.toString().substring(0, 3);
     var monthExpanded = someDate.toString().substring(4, 7);
-    var previousDay = someDate.toString().substring(8, 15);
-    $("#thedate").empty();
-    $("#thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
-      + " " + previousDay);
+    var previousDay = someDate.toString().substring(8, 10);
+    var previousYear = someDate.toString().substring(11, 15);
+
+    $(".thedate").empty();
+    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + previousDay + ", " + previousYear);
   });
 
   $(".right").on("click", function(){
@@ -146,10 +156,11 @@ $(document).ready(function() {
     var someDate = new Date(milliseconds);
     var dayOfWeek = someDate.toString().substring(0, 3);
     var monthExpanded = someDate.toString().substring(4, 7);
-    var nextDay = someDate.toString().substring(8, 15);
-    $("#thedate").empty();
-    $("#thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
-      + " " + nextDay);
+    var nextDay = someDate.toString().substring(8, 10);
+    var nextYear = someDate.toString().substring(11, 15);
+    $(".thedate").empty();
+    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + nextDay + ", " + nextYear);
   });
 
   $("body").append("<div id='popupcover'></div>");
@@ -170,14 +181,22 @@ $(document).ready(function() {
   $("#popup").append("<form id='popupform' onsubmit='getValues'>"
     + "</form>");
   $("#popupform").append("<div id='container1'></div>");
-  $("#container1").append("<div id='popupname'>Add Medication</div><br>");
+  $("#container1").append("<div id='popupname'>Add Medication for <br><span class='thedate'><span class='thedate'>" + myDay()
+    + ", " + myMonth() + " " + todaydate.getDate()
+    + ", " + todaydate.getFullYear() + "</span></span></div><br>");
   $("#container1").append("<span id='name'>Name of Medicine: <input id='inputName' class='textfield' type='text' name='inputName'></span><br><br>");
   $("#container1").append("<span id='day'>How many times a day?</span><br><br>");
   $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
 
-  for (i = 3; i >= 1; i--){
-    $("#day").after("<input type='radio' name='dayName' id='day" + i + "'><label for='day" + i + "'>" + i + "</label> ");
+  $("#popupdate").append();
+
+  for (i = 4; i >= 1; i--){
+    $("#day").after("<input type='radio' name='dayName' id='day" + i + "'><label for='day" + i + "' id='day" + i +"label'>" + i + "</label> ");
   }
+
+  $("#day4label").empty();
+  $("#day4label").append("More than 3");
+
 
   $("#week").after("<input type='radio' name='weekName' id='week7'><label for='week7'>Daily</label>");
 
@@ -214,10 +233,20 @@ $(document).ready(function() {
       "medication" : myMedName,
       "additional-notes" : myNotes,
       "timestamp" : myTimeStamp
+    });
+
+    window.alert("You have submitted data to Firebase!");
+
   });
 
-    window.alert("Working!");
+  var id = sessionStorage.getItem("uid");
+  var nameref = firebase.database().ref('user/' + id).child('name');
 
+  nameref.on('value', function(e){
+    var j = document.getElementById("theuserdesktop");
+    var k = document.getElementById("theusermobile");
+    j.innerHTML = e.val() + "!";
+    k.innerHTML = e.val() + "!";
   });
 
 });
