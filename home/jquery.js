@@ -216,7 +216,7 @@ $(document).ready(function() {
     $("#cancelicon").fadeOut("slow");
   });
 
-  $("#submitbutton").on("click", function(){
+  $("#submitbutton").on("click", function(){             //submit button click
 
     var id = sessionStorage.getItem("uid");
 
@@ -311,6 +311,19 @@ $(document).ready(function() {
       }
     }
   }
+
+  $("#delete").on("click", function () {
+    var count = $(".reminder").length;
+    console.log(count);
+    var i = 100;
+    while (true) {
+      $("#myreminder" + i).remove();
+      i--;
+      if($(".reminder").length != count) {
+        break;
+      }
+    }
+  });
 
 
   function errData(data) {
