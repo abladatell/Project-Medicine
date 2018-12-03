@@ -14,7 +14,6 @@ $(document).ready(function() {
   $("#headercontent").append("<span class='headerwelcome' id='welcomedefault'>Welcome </span>");
 
   $("#navigationcontent").append("<span class='buttonbox'><button class='buttons' id='add'>Add Medication</button></span>");
-  $("#navigationcontent").append("<span class='buttonbox'><button class='buttons' id='delete'>Delete Medication</button></span>");
   $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Sign out</span>");
 
   $("#schedule").append("<div id='date'></div>");
@@ -318,28 +317,20 @@ $(document).ready(function() {
 
   $("#schedule_list").on("click", "li .deleteButton", function() {
     var deletee = $(this).parent().attr("value");
-    console.log(deletee);
     deleter(deletee);
   });
-    // this.parent().remove(this);
-    // JQuery 'on' method
-
-
 
     //Schedule store stores name then key
     //schedule data store function pushes current schedule to schedule store.
   var scheduleStore = [];
   function scheduleDataStore(name, key){
-    console.log(name + " " + key);
     scheduleStore.push([name, key]);
   }
 
   //delette is the index number of the schedule.
   function deleter(deletee){
     var array = scheduleStore[deletee];
-    console.log(array);
     var key = array[1];
-    console.log(key);
     $("#schedule_list").empty();
     var id = sessionStorage.getItem("uid");
     firebase.database().ref().child('medications/' + id + "/" + key).remove();

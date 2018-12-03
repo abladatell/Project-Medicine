@@ -96,6 +96,16 @@
 
     #popup {
       width : 100%;
+      font-size: 12px;
+    }
+
+    /**
+    * Changes to the popup so it doesnt look funky.
+    */
+
+
+    #fieldbox{
+      width: 75%;
     }
 
     #schedule_list {
