@@ -314,7 +314,6 @@ $(document).ready(function() {
 
   $("#delete").on("click", function () {
     var count = $(".reminder").length;
-    console.log(count);
     var i = 100;
     while (true) {
       $("#myreminder" + i).remove();
