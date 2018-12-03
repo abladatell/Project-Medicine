@@ -223,21 +223,36 @@ $(document).ready(function() {
     var entry = firebase.database().ref().child('medications/' + id).push();
     var entry2 = firebase.database().ref('medications/' + id).push().child('additionalnotes');
 
+    // Checks if medicine has a name, if not then wont allow input.
     var myMedName = $('#inputName').val();
-    var myNotes = $('#fieldbox').val();
-    var medDateTime = $("#thedateentry").val();
+    if (myMedName == "") {
+      myMedName = null;
+      window.alert("Input medicine name.");
+    } else {
+      //Checks if notes have any value in it
+      //if not then makes it null and thus wont appear in database.
+      var myNotes = $('#fieldbox').val();
+      if (myNotes == "" ) {
+        myNotes = null;
+      }
+      //Checks if medDate has any value in it
+      //if not then makes it null and thus wont appear in database.
+      var medDateTime = $("#thedateentry").val();
+      if (medDateTime == "") {
+        medDateTime = null;
+      }
 
-    var myTimeStamp = Date.now();
+      var myTimeStamp = Date.now();
 
-    entry.update({
-      "medication" : myMedName,
-      "additionalnotes" : myNotes,
-      "timestamp" : myTimeStamp,
-      "date" : medDateTime
-    });
+      entry.update({
+        "medication" : myMedName,
+        "additionalnotes" : myNotes,
+        "timestamp" : myTimeStamp,
+        "date" : medDateTime
+      });
 
-    window.alert("You have submitted data to Firebase!");
-
+      window.alert("You have submitted data to Firebase!");
+    }
   });
 
   var id = sessionStorage.getItem("uid");
@@ -263,10 +278,32 @@ $(document).ready(function() {
       var medication = message[k].medication;
       var datetotakemeds = message[k].date;
       var additionalmessage = message[k].additionalnotes;
-      $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
-        + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
-        + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "</li>");
 
+      //Will check if all fields are populated, and if not then it will
+      //Delete the undefined sections.
+      if (datetotakemeds == undefined){
+        if (additionalmessage == undefined) {
+          //If both fields are undefined print this
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+            + medication + "</li>");
+        } else {
+          //If datetotakemeds is undefined but message isn't print this
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+            + medication + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "</li>");
+        }
+      } else {
+        if (additionalmessage == undefined){
+          //If datetotakemeds is defined but message isn't print this
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+            + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
+            + "</li>");
+        } else {
+          //If both fields are defined print this
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+            + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
+            + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "</li>");
+        }
+      }
       if (i % 2 > 0) {
         $("#myreminder" + i).css("background-color", "#90ee90");
       } else {
