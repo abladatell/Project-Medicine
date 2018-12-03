@@ -77,19 +77,6 @@ $(document).ready(function() {
 
   $("#date").append("<span id='myremindertitle'>My Reminders</span>");
 
-
-  //$("#date").append("<span class='thedate'>" + myDay()
-  //  + ", " + myMonth() + " " + checkNumber(todaydate.getDate())
-  //  + ", " + todaydate.getFullYear() + "</span>");
-
-  function checkNumber(num) {
-    if (num < 10) {
-      return "0" + num;
-    }
-  }
-
-  console.log(todaydate.getDate());
-
   function expandDay(theDate) {
     if (theDate == "Sun") {
       return thedays[0];
@@ -158,24 +145,32 @@ $(document).ready(function() {
 
   $("#container1").append("<img class='left' id='leftdesktop' class='dateicon' src='./images/left-arrow.svg'>");
   $("#container1").append("<img class='right' id='rightdesktop' class='dateicon' src='./images/right-arrow.svg'>");
-  $("#container1").append("<div id='popupname'>Add Medication for <br><span class='thedate'><span class='thedate'>" + myDay()
-    + ", " + myMonth() + " " + todaydate.getDate()
-    + ", " + todaydate.getFullYear() + "</span></span></div><br>");
-  $("#container1").append("<span id='name'>Name of Medicine: <input id='inputName' class='textfield' type='text' name='inputName'></span><br><br>");
-  $("#container1").append("<span id='day'>How many times a day?</span><br><br>");
-  $("#container1").append("<span id='notes'>Additional Notes: </span> <br><br>");
+  $("#container1").append("<div id='popupname'>Add Medication for <br><span id='meddate'>" + myDay()
+    + ", " + myMonth() + " " + checkNumber(todaydate.getDate())
+    + ", " + todaydate.getFullYear() + "</span></div><br>");
 
-  $("#popupdate").append();
+  var thedatetoday = myDay().toString() + ", " + myMonth().toString()
+  + " " + checkNumber(todaydate.getDate()).toString()
+  + ", " + todaydate.getFullYear().toString();
 
-  for (i = 4; i >= 1; i--){
-    $("#day").after("<input type='radio' name='dayName' id='day"
-      + i + "'><label for='day" + i + "' id='day"
-      + i +"label'>" + i + "</label> ");
+
+  $("#container1").append("<div id='name'>Name of Medicine: <input id='inputName' class='textfield' type='text' name='inputName'></div><br>");
+  $("#container1").append("<div id='dateentry'>Date: <input id='thedateentry' class='textfield' type='text' name='inputdate' size='35' value='"
+    + thedatetoday + "'/></div><br>");
+  $("#container1").append("<div id='addnotes'>Additional Notes: <br><textarea id='fieldbox' rows='4' cols='70'></textarea></div> <br><br>");
+
+
+
+  console.log(myDay().toString() + ", " + myMonth().toString() + " " + checkNumber(todaydate.getDate()).toString() + ", " + todaydate.getFullYear().toString());
+  console.log(inputName.value);
+
+  function checkNumber(num) {
+    if (num < 10) {
+      return "0" + num;
+    }
   }
 
-  $("#day4label").empty();
-  $("#day4label").append("More than 3");
-
+  // Left Button
 
   $(".left").on("click", function(){
     var milliseconds = todaydate.setDate(todaydate.getDate() - 1);
@@ -185,9 +180,16 @@ $(document).ready(function() {
     var previousDay = someDate.toString().substring(8, 10);
     var previousYear = someDate.toString().substring(11, 15);
 
-    $(".thedate").empty();
-    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)        + " " + previousDay + ", " + previousYear);
-    });
+    $("#meddate").empty();
+    $("#meddate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + previousDay + ", " + previousYear);
+
+    document.getElementById("thedateentry").value = (expandDay(dayOfWeek)
+      + ", " + expandMonth(monthExpanded)
+      + " " + previousDay + ", " + previousYear);
+  });
+
+  //Right button
 
   $(".right").on("click", function(){
     var milliseconds = todaydate.setDate(todaydate.getDate() + 1);
@@ -196,19 +198,14 @@ $(document).ready(function() {
     var monthExpanded = someDate.toString().substring(4, 7);
     var nextDay = someDate.toString().substring(8, 10);
     var nextYear = someDate.toString().substring(11, 15);
-    $(".thedate").empty();
-    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+    $("#meddate, .dateEntry").empty();
+    $("#meddate, .dateEntry").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + nextDay + ", " + nextYear);
+
+    document.getElementById("thedateentry").value = (expandDay(dayOfWeek)
+      + ", " + expandMonth(monthExpanded)
       + " " + nextDay + ", " + nextYear);
   });
-
-  $("#week").after("<input type='radio' name='weekName' id='week7'><label for='week7'>Daily</label>");
-
-  for (i = 6; i >= 1; i--){
-    $("#week").after("<input type='radio' name='weekName' id='week" + i + "'><label for='week" + i + "'>" + i + "</label>  ");
-  }
-
-  $("#until").append("<input class='textfield' type='text' id='datepicker' placeholder='yyyymmdd'>");
-  $("#notes").append("<br><textarea id='fieldbox' rows='4' cols='70'></textarea>");
 
   $("#container1").append("<div id='buttons'><input class='textfield' id='submitbutton' type='submit'> "
     + "<input class='textfield' type='button' id='cancelbutton' value='Cancel'></div>");
@@ -228,14 +225,15 @@ $(document).ready(function() {
 
     var myMedName = $('#inputName').val();
     var myNotes = $('#fieldbox').val();
+    var medDateTime = $("#thedateentry").val();
 
     var myTimeStamp = Date.now();
-    console.log(myTimeStamp);
 
     entry.update({
       "medication" : myMedName,
       "additionalnotes" : myNotes,
-      "timestamp" : myTimeStamp
+      "timestamp" : myTimeStamp,
+      "date" : medDateTime
     });
 
     window.alert("You have submitted data to Firebase!");
@@ -257,15 +255,17 @@ $(document).ready(function() {
   medref.on('value', gotData, errData);
 
   function gotData(data) {
-    console.log(data.val());
     var message = data.val();
     var keys = Object.keys(message);
 
     for (var i = 0; i < keys.length; i++) {
       var k = keys[i];
       var medication = message[k].medication;
+      var datetotakemeds = message[k].date;
       var additionalmessage = message[k].additionalnotes;
-      $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> Medication: " + medication + "<br>" + "Additional Notes: <br>" + additionalmessage + "</li>");
+      $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+        + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
+        + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "</li>");
 
       if (i % 2 > 0) {
         $("#myreminder" + i).css("background-color", "#90ee90");
