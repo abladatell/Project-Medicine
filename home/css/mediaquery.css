@@ -98,6 +98,13 @@
       width : 100%;
     }
 
+    #schedule_list {
+      overflow-y: none;
+    }
+
+    #myremindertitle {
+      font-size: 1.1em;
+    }
 
 }
 
@@ -193,6 +200,14 @@
 
     #popup {
       width : 600px;
+    }
+
+    #schedule_list {
+      overflow-y: scroll;
+    }
+
+    #myremindertitle {
+      font-size: 1.2em;
     }
 
 
@@ -300,5 +315,11 @@
       position : relative;
     }
 
+    #schedule_list {
+      overflow-y: scroll;
+    }
 
+    #myremindertitle {
+      font-size: 1.3em;
+    }
 }
