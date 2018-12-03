@@ -1,0 +1,20 @@
+body{
+  background-color: rgb(220, 220, 220);
+  background-image:url("../images/background.jpg");
+  background-size:cover;
+}
+
+#logoDiv{
+  left: 0px;
+  right: 0px;
+  top: 10px;
+  height: 100px;
+  align-content: center;
+  background-image: url("../images/logo.png");
+}
+
+#logoText{
+  display: none;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgb(100, 100, 100), 4px 4px 2px rgb(200, 200, 200);
+}
