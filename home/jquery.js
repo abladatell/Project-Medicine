@@ -276,6 +276,7 @@ $(document).ready(function() {
     for (var i = 0; i < keys.length; i++) {
       var k = keys[i];
       var medication = message[k].medication;
+      scheduleDataStore(medication, keys[i]);
       var datetotakemeds = message[k].date;
       var additionalmessage = message[k].additionalnotes;
 
@@ -313,17 +314,26 @@ $(document).ready(function() {
   }
 
   $("#delete").on("click", function () {
-    var count = $(".reminder").length;
-    var i = 100;
-    while (true) {
-      $("#myreminder" + i).remove();
-      i--;
-      if($(".reminder").length != count) {
-        break;
-      }
-    }
+    deleter(1);
   });
 
+  //Schedule store stores name then key
+  //schedule data store function pushes current schedule to schedule store.
+  var scheduleStore = [];
+  function scheduleDataStore(name, key){
+    scheduleStore.push([name, key]);
+  }
+
+  //delette is the index number of the schedule.
+  function deleter(deletee){
+    var array = scheduleStore[deletee];
+    var key = array[1];
+    console.log(key);
+    $("#schedule_list").empty();
+    var id = sessionStorage.getItem("uid");
+    firebase.database().ref().child('medications/' + id + "/" + key).remove();
+    scheduleStore.splice(deletee, (deletee + 1));
+  }
 
   function errData(data) {
     console.log("No data!");
