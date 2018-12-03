@@ -110,8 +110,6 @@ body, html {
   position : relative;
 }
 
-
-
 #container1 {
   padding-left : 40px;
   padding-top : 10%;
@@ -138,4 +136,12 @@ body, html {
 #container1 > #popupname {
   text-align: center;
   font-size: 1.2em;
+}
+
+.reminder {
+  font-family : Open Sans, sans-serif;
+  font-size : 1.5em;
+  margin : 30px 40px;
+  list-style-type: none;
+  padding : 10px 10px;
 }

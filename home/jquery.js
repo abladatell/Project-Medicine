@@ -19,6 +19,7 @@ $(document).ready(function() {
 
   $("#schedule").append("<div id='date'></div>");
   $("#schedule").append("<div id='schedule_list'></div>");
+  $(".schedule_list").append("<ul id='myreminders'></ul>");
 
   var todaydate = new Date(); //Initialize default date, which is today.
 
@@ -74,11 +75,12 @@ $(document).ready(function() {
     }
   }
 
+  $("#date").append("<span id='myremindertitle'>My Reminders</span>");
 
 
-  $("#date").append("<span class='thedate'>" + myDay()
-    + ", " + myMonth() + " " + checkNumber(todaydate.getDate())
-    + ", " + todaydate.getFullYear() + "</span>");
+  //$("#date").append("<span class='thedate'>" + myDay()
+  //  + ", " + myMonth() + " " + checkNumber(todaydate.getDate())
+  //  + ", " + todaydate.getFullYear() + "</span>");
 
   function checkNumber(num) {
     if (num < 10) {
@@ -87,10 +89,6 @@ $(document).ready(function() {
   }
 
   console.log(todaydate.getDate());
-
-  $("#date").append("<img class='left' id='leftdesktop' class='dateicon' src='./images/left-arrow.svg'>");
-  $("#date").append("<img class='right' id='rightdesktop' class='dateicon' src='./images/right-arrow.svg'>");
-
 
   function expandDay(theDate) {
     if (theDate == "Sun") {
@@ -138,30 +136,6 @@ $(document).ready(function() {
     }
   }
 
-  $(".left").on("click", function(){
-    var milliseconds = todaydate.setDate(todaydate.getDate() - 1);
-    var someDate = new Date(milliseconds);
-    var dayOfWeek = someDate.toString().substring(0, 3);
-    var monthExpanded = someDate.toString().substring(4, 7);
-    var previousDay = someDate.toString().substring(8, 10);
-    var previousYear = someDate.toString().substring(11, 15);
-
-    $(".thedate").empty();
-    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
-      + " " + previousDay + ", " + previousYear);
-  });
-
-  $(".right").on("click", function(){
-    var milliseconds = todaydate.setDate(todaydate.getDate() + 1);
-    var someDate = new Date(milliseconds);
-    var dayOfWeek = someDate.toString().substring(0, 3);
-    var monthExpanded = someDate.toString().substring(4, 7);
-    var nextDay = someDate.toString().substring(8, 10);
-    var nextYear = someDate.toString().substring(11, 15);
-    $(".thedate").empty();
-    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
-      + " " + nextDay + ", " + nextYear);
-  });
 
   $("body").append("<div id='popupcover'></div>");
   $("body").append("<div id='popup'></div>");
@@ -181,6 +155,9 @@ $(document).ready(function() {
   $("#popup").append("<form id='popupform' onsubmit='getValues'>"
     + "</form>");
   $("#popupform").append("<div id='container1'></div>");
+
+  $("#container1").append("<img class='left' id='leftdesktop' class='dateicon' src='./images/left-arrow.svg'>");
+  $("#container1").append("<img class='right' id='rightdesktop' class='dateicon' src='./images/right-arrow.svg'>");
   $("#container1").append("<div id='popupname'>Add Medication for <br><span class='thedate'><span class='thedate'>" + myDay()
     + ", " + myMonth() + " " + todaydate.getDate()
     + ", " + todaydate.getFullYear() + "</span></span></div><br>");
@@ -191,12 +168,38 @@ $(document).ready(function() {
   $("#popupdate").append();
 
   for (i = 4; i >= 1; i--){
-    $("#day").after("<input type='radio' name='dayName' id='day" + i + "'><label for='day" + i + "' id='day" + i +"label'>" + i + "</label> ");
+    $("#day").after("<input type='radio' name='dayName' id='day"
+      + i + "'><label for='day" + i + "' id='day"
+      + i +"label'>" + i + "</label> ");
   }
 
   $("#day4label").empty();
   $("#day4label").append("More than 3");
 
+
+  $(".left").on("click", function(){
+    var milliseconds = todaydate.setDate(todaydate.getDate() - 1);
+    var someDate = new Date(milliseconds);
+    var dayOfWeek = someDate.toString().substring(0, 3);
+    var monthExpanded = someDate.toString().substring(4, 7);
+    var previousDay = someDate.toString().substring(8, 10);
+    var previousYear = someDate.toString().substring(11, 15);
+
+    $(".thedate").empty();
+    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)        + " " + previousDay + ", " + previousYear);
+    });
+
+  $(".right").on("click", function(){
+    var milliseconds = todaydate.setDate(todaydate.getDate() + 1);
+    var someDate = new Date(milliseconds);
+    var dayOfWeek = someDate.toString().substring(0, 3);
+    var monthExpanded = someDate.toString().substring(4, 7);
+    var nextDay = someDate.toString().substring(8, 10);
+    var nextYear = someDate.toString().substring(11, 15);
+    $(".thedate").empty();
+    $(".thedate").append(expandDay(dayOfWeek) + ", " + expandMonth(monthExpanded)
+      + " " + nextDay + ", " + nextYear);
+  });
 
   $("#week").after("<input type='radio' name='weekName' id='week7'><label for='week7'>Daily</label>");
 
@@ -221,7 +224,7 @@ $(document).ready(function() {
     var id = sessionStorage.getItem("uid");
 
     var entry = firebase.database().ref().child('medications/' + id).push();
-    var entry2 = firebase.database().ref('medications/' + id).push().child('additional-notes');
+    var entry2 = firebase.database().ref('medications/' + id).push().child('additionalnotes');
 
     var myMedName = $('#inputName').val();
     var myNotes = $('#fieldbox').val();
@@ -231,7 +234,7 @@ $(document).ready(function() {
 
     entry.update({
       "medication" : myMedName,
-      "additional-notes" : myNotes,
+      "additionalnotes" : myNotes,
       "timestamp" : myTimeStamp
     });
 
@@ -248,5 +251,34 @@ $(document).ready(function() {
     j.innerHTML = e.val() + "!";
     k.innerHTML = e.val() + "!";
   });
+
+  var medref = firebase.database().ref('medications/' + id);
+
+  medref.on('value', gotData, errData);
+
+  function gotData(data) {
+    console.log(data.val());
+    var message = data.val();
+    var keys = Object.keys(message);
+
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      var medication = message[k].medication;
+      var additionalmessage = message[k].additionalnotes;
+      $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> Medication: " + medication + "<br>" + "Additional Notes: <br>" + additionalmessage + "</li>");
+
+      if (i % 2 > 0) {
+        $("#myreminder" + i).css("background-color", "#90ee90");
+      } else {
+        $("#myreminder" + i).css("background-color", "#71BC78");
+      }
+    }
+  }
+
+
+  function errData(data) {
+    console.log("No data!");
+    console.log(err.val());
+  }
 
 });
