@@ -286,11 +286,11 @@ $(document).ready(function() {
       if (datetotakemeds == undefined){
         if (additionalmessage == undefined) {
           //If both fields are undefined print this
-          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder' value='" + i + "'> <b>Medication:</b> "
             + medication + "<img class='deleteButton' id='delete" + i + "' src='./images/cancel.svg'></li>");
         } else {
           //If datetotakemeds is undefined but message isn't print this
-          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder' value='" + i + "'> <b>Medication:</b> "
             + medication + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "<img class='deleteButton' id='delete"
             + i + "' src='./images/cancel.svg'></li>");
         }
@@ -302,7 +302,7 @@ $(document).ready(function() {
             + "<img class='deleteButton' id='delete" + i + "' src='./images/cancel.svg'></li>");
         } else {
           //If both fields are defined print this
-          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder' value='" + i + "'> <b>Medication:</b> "
             + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
             + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "<img class='deleteButton' id='delete"
             + i + "' src='./images/cancel.svg'></li>");
@@ -318,6 +318,7 @@ $(document).ready(function() {
 
   $("#schedule_list").on("click", "li .deleteButton", function() {
     var deletee = $(this).parent().attr("value");
+    console.log(deletee);
     deleter(deletee);
   });
     // this.parent().remove(this);
@@ -329,12 +330,14 @@ $(document).ready(function() {
     //schedule data store function pushes current schedule to schedule store.
   var scheduleStore = [];
   function scheduleDataStore(name, key){
+    console.log(name + " " + key);
     scheduleStore.push([name, key]);
   }
 
   //delette is the index number of the schedule.
   function deleter(deletee){
     var array = scheduleStore[deletee];
+    console.log(array);
     var key = array[1];
     console.log(key);
     $("#schedule_list").empty();
