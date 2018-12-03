@@ -251,7 +251,7 @@ $(document).ready(function() {
         "date" : medDateTime
       });
 
-      window.alert("You have submitted data to Firebase!");
+      //window.alert("You have submitted data to Firebase!");
     }
   });
 
@@ -270,6 +270,7 @@ $(document).ready(function() {
   medref.on('value', gotData, errData);
 
   function gotData(data) {
+    scheduleStore = [];
     var message = data.val();
     var keys = Object.keys(message);
 
@@ -286,23 +287,25 @@ $(document).ready(function() {
         if (additionalmessage == undefined) {
           //If both fields are undefined print this
           $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
-            + medication + "</li>");
+            + medication + "<img class='deleteButton' id='delete" + i + "' src='./images/cancel.svg'></li>");
         } else {
           //If datetotakemeds is undefined but message isn't print this
           $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
-            + medication + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "</li>");
+            + medication + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "<img class='deleteButton' id='delete"
+            + i + "' src='./images/cancel.svg'></li>");
         }
       } else {
         if (additionalmessage == undefined){
           //If datetotakemeds is defined but message isn't print this
-          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
+          $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder' value='" + i + "'> <b>Medication:</b> "
             + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
-            + "</li>");
+            + "<img class='deleteButton' id='delete" + i + "' src='./images/cancel.svg'></li>");
         } else {
           //If both fields are defined print this
           $("#schedule_list").append("<li id='myreminder" + i + "' class='reminder'> <b>Medication:</b> "
             + medication + "<br>" + "<b>Date:</b> " + datetotakemeds
-            + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "</li>");
+            + "<br><b>Additional Notes:</b> <br>" + additionalmessage + "<img class='deleteButton' id='delete"
+            + i + "' src='./images/cancel.svg'></li>");
         }
       }
       if (i % 2 > 0) {
@@ -313,12 +316,17 @@ $(document).ready(function() {
     }
   }
 
-  $("#delete").on("click", function () {
-    deleter(1);
+  $("#schedule_list").on("click", "li .deleteButton", function() {
+    var deletee = $(this).parent().attr("value");
+    deleter(deletee);
   });
+    // this.parent().remove(this);
+    // JQuery 'on' method
 
-  //Schedule store stores name then key
-  //schedule data store function pushes current schedule to schedule store.
+
+
+    //Schedule store stores name then key
+    //schedule data store function pushes current schedule to schedule store.
   var scheduleStore = [];
   function scheduleDataStore(name, key){
     scheduleStore.push([name, key]);
@@ -332,7 +340,6 @@ $(document).ready(function() {
     $("#schedule_list").empty();
     var id = sessionStorage.getItem("uid");
     firebase.database().ref().child('medications/' + id + "/" + key).remove();
-    scheduleStore.splice(deletee, (deletee + 1));
   }
 
   function errData(data) {
