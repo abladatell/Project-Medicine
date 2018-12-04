@@ -135,6 +135,10 @@
       font-size: 1.1em;
     }
 
+    #popupname {
+      font-size: 0.8em;
+    }
+
 }
 
 @media only screen and (min-width: 650px) and (max-width: 1159px) {
