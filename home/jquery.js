@@ -13,7 +13,7 @@ $(document).ready(function() {
   $("#headercontent").append("<span class='headerwelcome' id='theuserdesktop'>!</span><img id='logoutmobile' onclick='logOut()' src='./images/logout.svg'>");
   $("#headercontent").append("<span class='headerwelcome' id='welcomedefault'>Welcome </span>");
 
-  $("#navigationcontent").append("<span class='buttonbox'><button class='buttons' id='add'>Add Medication</button></span>");
+  $("#navigationcontent").append("<div class='buttonbox'><button class='buttons' id='add'>Add Medication</button></div>");
   $("#navigationcontent").append("<span id='logout' onclick='logOut()'>Sign out</span>");
 
   $("#schedule").append("<div id='date'></div>");
