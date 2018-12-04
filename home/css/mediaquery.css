@@ -148,7 +148,6 @@
 
     .frame {
       width: 95%;
-      text-align: center;
     }
 
     #welcomemobile {
@@ -209,7 +208,8 @@
 
     .buttonbox {
       width: 160px;
-      display: inline-block;
+      display: block;
+      float: left;
       font-size: 0.8em;
     }
 
@@ -257,7 +257,6 @@
     .frame {
       width: 1160px;
       padding-left : 20px;
-      text-align: center;
     }
 
     #welcomemobile {
@@ -277,7 +276,8 @@
 
     .buttonbox {
       width: 180px;
-      display: inline-block;
+      display:block;
+      float: left;
       font-size: 0.9em;
       margin-left: 2.5%;
       margin-right: 2.5%;
