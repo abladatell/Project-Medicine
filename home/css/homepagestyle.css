@@ -155,3 +155,10 @@ body, html {
   border-radius: 50%;
   background-color: red;
 }
+
+#alarmAudio {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10rem;
+}
