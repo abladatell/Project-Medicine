@@ -97,15 +97,34 @@
     #popup {
       width : 100%;
       font-size: 12px;
+      padding-left: 0px;
+    }
+
+    #popupform #container1{
+      padding-left: 0px;
     }
 
     /**
     * Changes to the popup so it doesnt look funky.
     */
+    #name{
+      padding-left: 10px;
+    }
 
+    #dateentry{
+      padding-left: 10px;
+    }
+
+    #addnotes{
+      padding-left: 10px;
+    }
 
     #fieldbox{
       width: 75%;
+    }
+
+    #buttons{
+      padding-left: 10px;
     }
 
     #schedule_list {

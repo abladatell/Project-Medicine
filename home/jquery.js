@@ -141,7 +141,6 @@ $(document).ready(function() {
   $("#popup").append("<form id='popupform' onsubmit='getValues'>"
     + "</form>");
   $("#popupform").append("<div id='container1'></div>");
-
   $("#container1").append("<img class='left' id='leftdesktop' class='dateicon' src='./images/left-arrow.svg'>");
   $("#container1").append("<img class='right' id='rightdesktop' class='dateicon' src='./images/right-arrow.svg'>");
   $("#container1").append("<div id='popupname'>Add Medication for <br><span id='meddate'>" + myDay()
