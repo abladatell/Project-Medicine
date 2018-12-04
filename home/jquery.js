@@ -9,7 +9,7 @@ $(document).ready(function() {
   $("#contentbackground").append("<div class='frame' id='schedule'></div>");
 
   $("#headercontent").append("<img id='logoimg' src='../images/logo.png' alt='logo'>");
-  $("#headercontent").append("<span id='title'>myMedicationApp</span>");
+  $("#headercontent").append("<span id='title'>myMedicineApp</span>");
   $("#headercontent").append("<span class='headerwelcome' id='theuserdesktop'>!</span><img id='logoutmobile' onclick='logOut()' src='./images/logout.svg'>");
   $("#headercontent").append("<span class='headerwelcome' id='welcomedefault'>Welcome </span>");
 
