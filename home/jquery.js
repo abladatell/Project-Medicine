@@ -324,7 +324,7 @@ $(document).ready(function() {
     scheduleStore.push([name, key]);
   }
 
-  //delette is the index number of the schedule.
+  //delete is the index number of the schedule.
   function deleter(deletee){
     var array = scheduleStore[deletee];
     var key = array[1];
