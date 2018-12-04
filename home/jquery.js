@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
   $("body").append("<div id='navigation'></div>");
   $("body").append("<div id='contentbackground'></div>");
 
@@ -339,5 +341,7 @@ $(document).ready(function() {
     console.log("No data!");
     console.log(err.val());
   }
+
+  
 
 });
