@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-
-
   $("body").append("<div id='navigation'></div>");
   $("body").append("<div id='contentbackground'></div>");
 
@@ -26,6 +24,8 @@ $(document).ready(function() {
 
   var themonth = ['January', 'February', 'March', 'April', 'May', 'June',
    'July', 'August', 'September', 'October', 'November', 'December'];
+
+   //Extract month from an integer
 
   function myMonth() {
     if (todaydate.getMonth() == 0) {
@@ -57,6 +57,8 @@ $(document).ready(function() {
 
   var thedays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
    'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  //Extract day from an integer
 
   function myDay() {
     if (todaydate.getDay() == 0) {
@@ -342,6 +344,33 @@ $(document).ready(function() {
     console.log(err.val());
   }
 
-  
+  // Hovering functions
+
+  $("#add").hover(
+    function() {
+      $(this).css("color", "#71BC78");
+    },
+    function() {
+      $(this).css("color", "black");
+    }
+  );
+
+  $("#logout").hover(
+    function() {
+      $(this).css("color", "red");
+    },
+    function() {
+      $(this).css("color", "black");
+    }
+  );
+
+  $(".left, .right").hover(
+    function() {
+      $(this).css("filter", "saturate(8)");
+    },
+    function() {
+      $(this).css("filter", "saturate(0)");
+    }
+  );
 
 });
